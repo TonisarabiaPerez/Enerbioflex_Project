@@ -1,0 +1,25 @@
+#menubarre {
+	display: flex;
+	background-color:#7ad443;
+	justify-content:center;
+	margin-top:0;
+	margin:auto;
+	padding : 15px;
+	list-style:none;
+	width:400px;
+	height:20px;
+	border-radius: 25px;
+}
+
+#menubarre li a{
+	color:#fff;
+	padding:16px;
+	background-color:#7ad443;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 15px;
+	border-radius: 25px;
+}
+
+#menubarre li:hover a{
+	background-color:#4D4D4D;
+}

@@ -1,0 +1,74 @@
+
+fieldset {
+	border: 2px solid #7ad443;
+
+
+}
+legend{
+	font-family:gras;
+	font-family: verdana;
+	font-size:20px;
+	color:#4D4D4D;
+	
+}
+
+.blocA{
+	border:2px solid black;
+	
+}
+
+
+.article{
+	 width: 20%;
+	 height:30%;
+	 margin-left:10%; 
+}
+
+
+
+p{
+		font-family:catalan;
+		font-size:25px;
+		margin-top:-18%;
+		margin-left:35%;
+}
+
+
+.boutton a{
+		margin-left:43%;
+		font-size:30px;
+		color:#4D4D4D;
+}
+
+h1{
+	margin-left:35%;	
+}
+
+h2{
+	margin-left:20%;
+	
+}
+
+
+td{
+	border-bottom:1px solid grey;
+	width:70%;	
+}
+
+.NewSujet {
+	
+		
+		border-bottom:1px solid grey;
+		width:70%;
+}
+
+
+
+
+
+
+
+
+
+
+
