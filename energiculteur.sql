@@ -19,7 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `energiculteur`
 --
-
 -- --------------------------------------------------------
 
 --
@@ -28,14 +27,22 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `article` (
   `id` int(11) UNSIGNED NOT NULL,
-  `id_auteur` int(11) UNSIGNED NOT NULL,
-  `titre` varchar(63) COLLATE latin1_general_ci NOT NULL,
-  `description` varchar(255) COLLATE latin1_general_ci NOT NULL,
-  `contenu` text COLLATE latin1_general_ci NOT NULL,
-  `image` varchar(255) COLLATE latin1_general_ci NOT NULL,
-  `date_creation` datetime NOT NULL,
-  `date_modification` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+  `titre` varchar(100) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `voie` varchar(100) NOT NULL,
+  `ville` varchar(255) NOT NULL,
+  `departement` varchar(255) NOT NULL,
+  `region` varchar(255) NOT NULL,
+  `ressource` varchar(255) NOT NULL,
+  `type` varchar(20) NOT NULL,
+  `photo` varchar(255) DEFAULT NULL,
+  `prix` varchar(255) NOT NULL,
+  `date_publication` date NOT NULL,
+  `date_peremption` date NOT NULL,
+  `id_utilisateur` int(11) NOT NULL,
+  `id_statistique` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 -- --------------------------------------------------------
 
@@ -102,12 +109,16 @@ CREATE TABLE `membre` (
   `nom` varchar(127) COLLATE latin1_general_ci NOT NULL DEFAULT 'Doe',
   `prenom` varchar(127) COLLATE latin1_general_ci NOT NULL DEFAULT 'John',
   `civilite` varchar(6) COLLATE latin1_general_ci DEFAULT NULL,
+  `numeros_telephone` varchar(255) NOT NULL,
   `login` varchar(15) COLLATE latin1_general_ci NOT NULL,
   `mdp` varchar(40) COLLATE latin1_general_ci NOT NULL,
   `mail` varchar(255) COLLATE latin1_general_ci NOT NULL,
   `mailing` tinyint(1) NOT NULL DEFAULT '1',
   `ville` varchar(127) COLLATE latin1_general_ci DEFAULT NULL,
   `pays` varchar(31) COLLATE latin1_general_ci DEFAULT NULL,
+  `type` varchar(255) DEFAULT NULL,
+  `profession` varchar(255) DEFAULT NULL,
+  `nom_entreprise` varchar(255) DEFAULT NULL,
   `photo` varchar(255) COLLATE latin1_general_ci NOT NULL DEFAULT 'default.jpg',
   `description` varchar(140) COLLATE latin1_general_ci DEFAULT NULL,
   `date_naissance` date DEFAULT NULL,
@@ -115,7 +126,11 @@ CREATE TABLE `membre` (
   `adresseIp` varchar(45) COLLATE latin1_general_ci DEFAULT NULL,
   `date_creation` datetime DEFAULT NULL,
   `date_connexion` datetime DEFAULT NULL,
-  `activation` int(1) NOT NULL DEFAULT '0'
+  `activation` int(1) NOT NULL DEFAULT '0',
+  `voie` varchar(255) DEFAULT NULL,
+  `departement` varchar(255) DEFAULT NULL,
+  `region` varchar(255) DEFAULT NULL,
+  `id_alerte` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
 --
@@ -1412,14 +1427,6 @@ INSERT INTO `topic` (`id`, `id_forum`, `id_auteur`, `titre`, `date_creation`) VA
 --
 
 --
--- Index pour la table `article`
---
-ALTER TABLE `article`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_auteur` (`id_auteur`),
-  ADD KEY `id_auteur_2` (`id_auteur`);
-
---
 -- Index pour la table `chat`
 --
 ALTER TABLE `chat`
@@ -1428,6 +1435,19 @@ ALTER TABLE `chat`
   ADD KEY `diffusionId` (`diffusionId`),
   ADD KEY `auteurId_2` (`auteurId`),
   ADD KEY `diffusionId_2` (`diffusionId`);
+
+
+--
+-- Index pour la table `article`
+--
+ALTER TABLE `article`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_utilisateur` (`id_utilisateur`),
+  ADD KEY `id_statistique` (`id_statistique`),
+  ADD KEY `departement` (`departement`),
+  ADD KEY `region` (`region`),
+  ADD KEY `ressource` (`ressource`),
+  ADD KEY `type` (`type`);
 
 --
 -- Index pour la table `commentaire`
@@ -1532,12 +1552,12 @@ ALTER TABLE `topic`
 --
 -- AUTO_INCREMENT pour les tables exportées
 --
-
---
 -- AUTO_INCREMENT pour la table `article`
 --
 ALTER TABLE `article`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+--
+--
 --
 -- AUTO_INCREMENT pour la table `chat`
 --
@@ -1668,29 +1688,6 @@ INSERT INTO `alerte` (`id_alerte`, `frequence`) VALUES
 (1, 24),
 (2, 168);
 
--- --------------------------------------------------------
-
---
--- Structure de la table `article`
---
-
-CREATE TABLE `article_leboncoin` (
-  `id_article` int(11) NOT NULL,
-  `titre` varchar(100) NOT NULL,
-  `description` varchar(255) NOT NULL,
-  `voie` varchar(100) NOT NULL,
-  `ville` varchar(255) NOT NULL,
-  `departement` varchar(255) NOT NULL,
-  `region` varchar(255) NOT NULL,
-  `ressource` varchar(255) NOT NULL,
-  `type` varchar(20) NOT NULL,
-  `photo` varchar(255) DEFAULT NULL,
-  `prix` varchar(255) NOT NULL,
-  `date_publication` date NOT NULL,
-  `date_peremption` date NOT NULL,
-  `id_utilisateur` int(11) NOT NULL,
-  `id_statistique` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -38129,17 +38126,6 @@ ALTER TABLE `alerte`
   ADD PRIMARY KEY (`id_alerte`),
   ADD KEY `id_alerte` (`id_alerte`);
 
---
--- Index pour la table `article`
---
-ALTER TABLE `article_leboncoin`
-  ADD PRIMARY KEY (`id_article`),
-  ADD KEY `id_utilisateur` (`id_utilisateur`),
-  ADD KEY `id_statistique` (`id_statistique`),
-  ADD KEY `departement` (`departement`),
-  ADD KEY `region` (`region`),
-  ADD KEY `ressource` (`ressource`),
-  ADD KEY `type` (`type`);
 
 --
 -- Index pour la table `lieux`
@@ -38187,11 +38173,6 @@ ALTER TABLE `utilisateur`
 ALTER TABLE `alerte`
   MODIFY `id_alerte` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT pour la table `article`
---
-ALTER TABLE `article_leboncoin`
-  MODIFY `id_article` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
---
 -- AUTO_INCREMENT pour la table `lieux`
 --
 ALTER TABLE `lieux`
@@ -38213,7 +38194,7 @@ ALTER TABLE `utilisateur`
 --
 -- Contraintes pour la table `article`
 --
-ALTER TABLE `article_leboncoin`
+ALTER TABLE `article`
   ADD CONSTRAINT `article_fk11` FOREIGN KEY (`id_utilisateur`) REFERENCES `utilisateur` (`id_utilisateur`),
   ADD CONSTRAINT `article_fk16` FOREIGN KEY (`id_statistique`) REFERENCES `statistique` (`id_statistique`);
 
