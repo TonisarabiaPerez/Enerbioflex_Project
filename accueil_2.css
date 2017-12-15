@@ -16,13 +16,13 @@ body{
 	flex-wrap: wrap;
 	height : 100%;
 	margin : auto;
-	max-width : 1080px;
+	width: 100%;
 	min-width : 720px;
 	word-wrap:break-word;
 }
 .container{
-	max-width : 1080px;
 	min-width : 720px;
+	width: 100%;
 	
 }
 
@@ -48,10 +48,11 @@ a{
 }
 
 .logo{
-	width:300px;
-	padding-top:-20px;
-	float:left;
-	padding-right: 60px;
+	
+	display: block;
+	width:200px;
+	margin-right: auto;
+	margin-left: auto;
 
 }
 
@@ -160,19 +161,6 @@ header{
 }
 
 
-/*....................................................titre : reseau Sociaux..................................................*/
-#reseaux{
-	margin-top: 20px; 
-	display : flex;
-}
-
-.reseau{
-	width:30px;
-	height:30px;
-	margin: 2px;
-	margin-bottom:0px;
-}
-
 
 /*.............................................................Menu.............................................................*/
 
@@ -201,12 +189,13 @@ header{
 	margin:0;
 	padding:0;
 	display: flex;
+	justify-content: center;
 	position: relative;
-	background: #45aed6;
-	-moz-box-shadow: 0 2px 1px #9c9c9c;
+	background: white;
+	/*-moz-box-shadow: 0 2px 1px #9c9c9c;
 	-webkit-box-shadow: 0 2px 1px #9c9c9c;
 	box-shadow: 0 2px 1px #9c9c9c;
-	width: 100%;
+	width: 100%;*/
 }
 
 /*Create a horizontal list with spacing*/
@@ -226,24 +215,18 @@ header{
 	text-align: center;
 	line-height: 35px;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	color: #fff;
-	background: #45aed6;
+	color: fff;
+	
+	background:white;
 		
 }
 
 
 /*Hover state for top level links*/
 #menu li:hover a {
-	background: #4D4D4D;
+	background: white;
 }
 
-#menu li:hover .seconnecter{
-	background: #7AD443;
-}
-
-#menu li:hover .sedeconnecter{
-	background: #ec7148;
-}
 
 /*Style for dropdown links*/
 #menu li:hover #menu a {
@@ -255,7 +238,7 @@ header{
 
 /*Hover state for dropdown links*/
 #menu li:hover #menu a:hover {
-		background: #2f3036;
+	background: #2f3036;
 	color: #fff;
 }
 
@@ -341,12 +324,15 @@ input[type=checkbox]:checked ~ #menu{
 #menu li a {
  display:block;
  width:100px;
- color:white;
+ color:black;
  text-decoration:none;
  padding:5px;
+ 
  }
 #menu li a:hover {
- color:#FFD700;
+ color:#8B4513;
+ font-weight: bold;
+ border-bottom: 1px solid #45BEF8;
  }
 #menu ul li li  ul {
  display:none;
@@ -357,6 +343,7 @@ input[type=checkbox]:checked ~ #menu{
 
  #menu ul li:hover ul {
  display:block;
+ box-shadow: 0px 5px 5px #DDE0E0;
  }
 #menu li:hover ul li {
  float:none;
@@ -417,12 +404,8 @@ h3{
 }
 #imgnews{
 	display:flex;
-	padding-left: 0px;
-	margin-top: 20px;
-border: solid 5px #2e2e2e;
-	-moz-box-shadow: 0 2px 1px #9c9c9c;
-	-webkit-box-shadow: 0 2px 1px #9c9c9c;
-	box-shadow: 0 2px 1px #9c9c9c;
+	margin-left:-20.4px;
+	margin-right:-20.2px;
 }
 
 .fb-page{
@@ -580,13 +563,16 @@ height: 100%;
  /*............................................bas de page..............................................*/
 
  footer{
-	 -moz-box-shadow: 0 2px 1px #9c9c9c;
+	-moz-box-shadow: 0 2px 1px #9c9c9c;
 	-webkit-box-shadow: 0 2px 1px #9c9c9c;
 	box-shadow: 0 2px 1px #9c9c9c;
 	width: 100%;
-	position : relative;
-	bottom : 0;
- }
+	position: relative;
+	
+	
+
+	}
+ 
  .partenaire{
 
 
@@ -597,6 +583,7 @@ height: 100%;
 	background-image: -moz-linear-gradient(90deg, #2caab3 0%, #2c8cb3 100%);
     background-image: -webkit-linear-gradient(90deg, #2caab3 0%, #2c8cb3 100%);
     background-image: -ms-linear-gradient(90deg, #2caab3 0%, #2c8cb3 100%);
+
 	/* padding-bottom:5px; */
 	/* padding-right:20px; */
 	/* padding-left:20px; */
@@ -621,19 +608,79 @@ hr{
 
 #bas-de-page{
 
+	position: relative;
 	font-size:15px;
-	text-align:center;
-	background: none repeat scroll 0% 0% ;
-	background-color: #2e2e2e;
-	padding-bottom:5px;
+	
+	height: 130px;
+	background-color: #282828;
+	padding-bottom:67px;
 	padding:30px;
 	color:#FFF;
 
+	
+
 }
 
-#bas-de-page span{
-        /* margin-right:  10px; */
-        padding-right: 10px;
-        border-right: 1px solid #888;
+/*....................................................titre : reseau Sociaux..................................................*/
+#reseaux{
+	
+	
+	width:270px;
+	height:50px;
+	display: inline-block;
+	float: right;
+	margin-top: 20px;
+	margin-right: 20px;
+	right:80px;
+	bottom: 65px;
+	
+	
+	
 }
+
+.reseau{
+	width:50px;
+	height:50px;
+	
+}
+
+/*--------------------------------------------------------------------------------------------------------------------------------*/
+
+
+#textefooter{
+	
+		text-align: left;
+		display: inline-block;
+		margin-top: 20px;
+		width:400px;
+		left: 40px
+		
+		
+
+}
+
+.textefooterT{
+		margin: 0 auto;
+		display: block;
+		text-align: center;
+		font-family: "Courrier New", sans-serif;
+		font-size: 16px;
+
+		
+      	
+		
+      
+
+
+}
+
+
+.textefooterX{
+	
+    position: absolute;
+    bottom: 2px;
+    right: 3px;
+    color:#9C9E9D;
+}
+
 
