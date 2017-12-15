@@ -12,8 +12,18 @@
 	  fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));</script>
 
-<H3 align="center">Energiculteur c’est quoi ? </H3>
+
+
+
 	<div class="container">
+
+		<div id="imgnews">
+			
+							
+					<video width="100%" src="Images/video.mp4" type ="video/mp4" poster="Images/image.jpg" controls="controls"></video><a href="https://biteable.com/watch/energiculteur-1371899/216053c5c1b88a14cb167c40d591359dca2e43f4"></a> 				
+				
+	</div>
+<H3 align="center">Energiculteur c’est quoi ? </H3>
 			<div id="text">
 			<link rel="stylesheet" type="text/css" href="accueil_2.css"/>
 			
@@ -36,26 +46,17 @@
 				</p>   
 									
 			</div>
-	<div id="imgnews">
-		<link rel="stylesheet" type="text/css" href="accueil_2.css"/>
-			<div class="boite">
-				<div id="mask">
-							
-					<iframe frameborder="0" width="560" height="315" src="https://biteable.com/watch/embed/energiculteur-1371899/216053c5c1b88a14cb167c40d591359dca2e43f4" allowfullscreen="true"></iframe><p><a href="https://biteable.com/watch/energiculteur-1371899/216053c5c1b88a14cb167c40d591359dca2e43f4"></a> .</p>
-				</div>
+	
 						
-			</div>		
+					
 			
-			<div class="fb-page" data-href="https://www.facebook.com/enerbioflex" 
-				data-tabs="timeline" data-height="320" data-spacing="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/enerbioflex" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/enerbioflex">Enerbioflex</a></blockquote>
-			</div>
-				
 	</div>
 
 		
 		
 	<section class="post">
-		<hr width="100%" color=2a95be/> <h3> Les derniers posts</h3> 
+		<hr width="100%" color=2a95be/> 
+		<h3> Les derniers posts</h3> 
 		
 			
 			<div class="divResult">
@@ -66,10 +67,11 @@
 			 	<div class="tabPointO3">
 				</div>
 			</div>
+	</section>
 </div>
-	
+
 <?php
-require('footer.php')
+require('footer.php');
 ?>
 
 	
