@@ -29,11 +29,12 @@ if(!isset($folder)) $folder=''; //NOTE: La variable $folder et les echo $folder 
     </head>
 
 	<body>
-	
-		<div id="page">
+	<div id="page">
 			<header>
-				<a href="<?php echo $folder ?>accueil.php"><img class="logo" src="<?php echo $folder ?>Images/image logo.png" alt="logo"  /></a> 
 
+				<div class="logo"><a href="<?php echo $folder ?>accueil.php"><img width="200px" src="<?php echo $folder ?>Images/image logo.png" alt="logo"  /></a> 
+				</div>
+				
 				<!--
 				<div id="zone_recherche">
 					<input id="texte_recherche" type="text" placeholder="Rechercher" />
@@ -72,7 +73,6 @@ if(!isset($folder)) $folder=''; //NOTE: La variable $folder et les echo $folder 
 				<?php } ?>
 			</ul>	
 			
-		</nav></div>
-			
-		<br/>
+		</nav>
+		</div>
 		<div id="main">

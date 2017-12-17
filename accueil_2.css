@@ -1,32 +1,57 @@
-html{
-
-    background-attachment:fixed;
-	background-repeat:repeat;
-    background-size:contain;
-	background-color: #f5f5f5;
-	font-family: calibri, arial, verdana, sans-serif;
-	height : 100%;
-}
 
 body{
-	font-family:"times new roman", times, serif;
+	font-family: 'Roboto', sans-serif;
 	color: #4D4D4D;
-	display : flex;
-	flex-direction: column;
-	flex-wrap: wrap;
-	height : 100%;
-	margin : auto;
-	width: 100%;
-	min-width : 720px;
-	word-wrap:break-word;
+	display: block;
+	width:100%;
+	margin:0;
 }
-.container{
-	min-width : 720px;
-	width: 100%;
-	
+/* --------------------------------------Intro text------------------------------------------*/
+#intro
+{
+	margin-left: auto;
+	margin-right: auto;
 }
+#intro img
+{
+	height: 500px;
+	width: 100%;
+}
+#text
+{
+	width: 80%;
+	color: white;
+	left:0;
+	right: 0;
+	top:350px;
+	margin: auto auto;
+	position: absolute;
+}
+h3
+{
+	font-size: 2em;
+	color:rgb(41,171,225);
+}
+/* --------------------------------------Fin Intro text------------------------------------------*/
+/*-----------------------Video-------------------*/
+#video
+{
+	color:rgb(41,171,225);
+	width: 100%;
+	background-color: rgb(238, 238, 238);
+	text-align: center;
+}
+#video h4
+{
+	font-size: 3em;
+}
+/*-----------------------Fin Video-------------------*/
+
 
 #page{
+	display: flex;
+	flex-direction: column;
+	width: 100%;
 	background-color: #ffffff;
 }
 
@@ -45,15 +70,14 @@ Rouge alert: ec7148
 a{
 	text-decoration:none;
 	color: #4D4D4D;
+	display: inline-block;
+	margin:0 auto;
 }
 
 .logo{
-	
-	display: block;
-	width:200px;
-	margin-right: auto;
-	margin-left: auto;
 
+	margin: 0 auto;
+	text-align: center;
 }
 
 #groslogo{
@@ -119,9 +143,7 @@ a{
 /*.........................................bloc du haut..................................................*/
 header{
 
-	margin-top:-20px;
-	padding:40px;
-	padding-top:-10px;
+	margin-top:20px;
 	-moz-box-shadow: 0 2px 1px #9c9c9c;
 	-webkit-box-shadow: 0 2px 1px #9c9c9c;
 	box-shadow: 0 2px 1px #9c9c9c;
@@ -186,8 +208,7 @@ header{
 /*Strip the ul of padding and list styling*/
 #menu {
 	list-style-type:none;
-	margin:0;
-	padding:0;
+	padding-top: 10px;
 	display: flex;
 	justify-content: center;
 	position: relative;
@@ -350,13 +371,13 @@ input[type=checkbox]:checked ~ #menu{
  }
  #menu li ul {
  position:absolute;
+ z-index: 100000;
  }
 /***************************************MAIN******************************************************************************/
 
 
 #main{
 	margin-top: -20px;
-	padding : 20px;
 	padding-top : 50px;
 	-moz-box-shadow: 0 2px 1px #9c9c9c;
 	-webkit-box-shadow: 0 2px 1px #9c9c9c;
@@ -391,17 +412,8 @@ legend{
 }
 h3{
 	padding-right:10px;
-
-
-
 }
-#text{
-	background:white;
-	border: solid 5px #45aed6;
-	-moz-box-shadow: 0 2px 1px #45aed6;
-	-webkit-box-shadow: 0 2px 1px #45aed6;
-	box-shadow: 0 2px 1px #45aed6;
-}
+
 #imgnews{
 	display:flex;
 	margin-left:-20.4px;
@@ -610,7 +622,6 @@ hr{
 
 	position: relative;
 	font-size:15px;
-	
 	height: 130px;
 	background-color: #282828;
 	padding-bottom:67px;
