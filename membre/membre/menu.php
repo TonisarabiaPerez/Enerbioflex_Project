@@ -9,7 +9,7 @@ echo '
 		</ul>
 	</div>
 	
-	<h1>Bonjour '.Membre::info($_SESSION['id'], 'prenom').' '.Membre::info($_SESSION['id'], 'nom').'</h1>
+	<h1>Bonjour '.Membre::info($_SESSION['id'], 'pseudo').'</h1>
 	<hr width="100%"  color="2a95be"/>
 	<br />';
 ?>

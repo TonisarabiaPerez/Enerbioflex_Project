@@ -2,11 +2,10 @@
 require ('connexion.php');
 include ('header_simple.php');
 include ('function.php');
-include('membre/config.php');
 require("lib/PHPMailer-master/PHPMailerAutoload.php");
 if(isset($_SESSION['id']) AND !empty($_SESSION['id']) ) {
 	if(isset($_POST['signaler']) ) {
-		$requete=$bd->prepare('SELECT login, mail FROM membre WHERE id=:id');
+		$requete=$bd->prepare('SELECT pseudo, mail FROM membre WHERE id=:id');
 		$requete->bindValue(':id',$_SESSION['id']);
 		$requete->execute();
 		$membre=$requete->fetch(PDO::FETCH_ASSOC);
@@ -29,7 +28,7 @@ if(isset($_SESSION['id']) AND !empty($_SESSION['id']) ) {
 				</head>
 				
 				<body>
-						Nom de l\'exp&eacute;diteur :'.$_POST['login'].'<br />
+						Nom de l\'exp&eacute;diteur :'.$_POST['pseudo'].'<br />
 						'.$titre.'<br />
 						Id:'.$id.'<br />
 						Raison du signalement:'.$_POST['sujet'].'<br />
@@ -55,6 +54,7 @@ if(isset($_SESSION['id']) AND !empty($_SESSION['id']) ) {
 }
 
 function signalez($message,$dest){
+	require_once('membre/config.php'); //fichier contenant les id mail serveur à modifier
 	$mail = new PHPMailer;
 
 	//$mail->SMTPDebug = 3;                               // Enable verbose debug output
@@ -116,8 +116,8 @@ else if(isset($erreur))
 			<table width="80%" align="center">
 
 			<tr>
-				<td align="left" class="titre_form" > Login : </td>
-				<td><input type="text" name="login" value="<?php echo $membre['login'] ?>" size="40"  readonly /></td>
+				<td align="left" class="titre_form" > pseudo : </td>
+				<td><input type="text" name="pseudo" value="<?php echo $membre['pseudo'] ?>" size="40"  readonly /></td>
 				<td><input type="hidden" name="mail" value="<?php echo $membre['mail'] ?>"  size="40"  /></td>
 			</tr>
 			<tr>

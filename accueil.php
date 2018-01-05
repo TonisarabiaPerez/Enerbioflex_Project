@@ -13,7 +13,7 @@
 	}(document, 'script', 'facebook-jssdk'));</script>
 
 <H3 align="center">Energiculteur c’est quoi ? </H3>
-	<div id="container">
+	<div class="container">
 			<div id="text">
 			<link rel="stylesheet" type="text/css" href="accueil_2.css"/>
 			
