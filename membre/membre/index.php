@@ -9,25 +9,28 @@ echo Message::nouveauNb($_SESSION['id']);
 ?>
 
 
-<h2>Mes Posts</h2>
+<h2>Mes articles</h2>
 <hr width="25%" align="left" color="2a95be"/> 
 <?php 
-	$req = Bdd::connectBdd()->prepare('select titre from topic where topic.id_auteur = :id order by titre');
+	$req = Bdd::connectBdd()->prepare('select titre, description from article where id_auteur = :id order by titre');
 	$req->bindValue(':id',$_SESSION['id']);
 	$req->execute();
 	if( ($article = $req->fetch(PDO::FETCH_ASSOC)) ){
-		echo '<ul>';
+		echo '<table>';
 		do{
 			extract($article);
 			echo '
-				<a href="'.$folder.'forum/forum.php?titre='.rawurldecode($titre).'"><li class="date_res">'.rawurldecode($titre).' </li></a>';
+			<tr>
+				<td class="date_res">'.rawurldecode($titre).' </td>
+				<td> '.$description.' </td>
+			</tr>';
 		} while($article = $req->fetch(PDO::FETCH_ASSOC));
-		echo '</ul>';
+		echo '</table>';
 	}
-	else echo '<p> Vous n\'avez aucun post sur le forum. </p>';
+	else echo '<p> Vous n\'avez aucun article. </p>';
 ?>		
 
-<a href="<?php echo $folder ?>forum/creerSujet.php" class="myButton">+ Ecrire un Sujet</a>
+<a href="<?php echo $folder ?>articles/creerArticle.php" class="myButton">+ Ecrire un article</a>
 
 <h2>Mes Visioconférences </h2>
 <hr width="25%" align="left" color="2a95be"/>

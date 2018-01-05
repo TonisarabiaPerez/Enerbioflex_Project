@@ -45,8 +45,8 @@ else {
 	<td valign="top" rowspan="4"><a href="../accueil.php"><img src="../Images/default.png" width="70" height="70" /></td>
 	</tr>
 	<tr>
-	<td>Email : </td>
-	<td><input type="text" name="mail" placeholder="exemple@exemple.fr"/></td>
+	<td>Identifiant : </td>
+	<td><input type="text" name="login" /></td>
 	</tr>
 	<tr>
 	<td>Mot de passe : </td>

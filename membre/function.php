@@ -150,36 +150,38 @@ class Inscription {
 	//			Retourne les 2 mots de passe sont !=
 	// Sinon 
 	// 		Retourne remplir tout les champs
-	public static function inscrire($civilite, $nom, $prenom,$pseudo, $ville,$voie,$type,$date_de_naissance, $pays, $mail, $passeUn, $passeDe,$numero) {
-		if(!empty($mail) AND !empty($passeUn) AND !empty($pseudo) AND !empty($passeDe) AND !empty($numero)) {
+	public static function inscrire($civilite, $nom, $prenom, $ville, $pays, $identifiant, $mail, $passeUn, $passeDe) {
+		if(!empty($identifiant) AND !empty($mail) AND !empty($passeUn) AND !empty($passeDe)) {
 			if($passeUn === $passeDe) {
-				if(filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+				$verifIdentifiant = Bdd::connectBdd()->prepare(SELECT.ALL.MEMBRE.LOGIN);
+				$verifIdentifiant->bindParam(":login", $identifiant);
+				$verifIdentifiant->execute();
+				if($verifIdentifiant -> rowCount() != 1) {
+					if(filter_var($mail, FILTER_VALIDATE_EMAIL)) {
 						$verifMail = Bdd::connectBdd()->prepare(SELECT.ALL.MEMBRE.EMAIL);
 						$verifMail -> bindParam(':mail', $mail);
 						$verifMail -> execute();
-						$verifPseudo = Bdd::connectBdd()->prepare('SELECT pseudo FROM membre WHERE pseudo=:pseudo');
-						$verifPseudo -> bindParam(':pseudo', $pseudo);
-						$verifPseudo -> execute();
-						if($verifMail -> rowCount() != 1 AND $verifPseudo -> rowCount() != 1) {
-							Inscription::profil($civilite, $nom, $prenom,$pseudo, $ville,$voie,$type,$date_de_naissance, $pays, $mail, $passeUn,$numero);
-							Inscription::protect($mail);
-							Inscription::message($mail);
-							$resultat = Inscription::activer($mail);
+						if($verifMail -> rowCount() != 1) {
+							Inscription::profil($civilite, $nom, $prenom, $ville, $pays, $identifiant, $mail, $passeUn);
+							Inscription::protect($identifiant);
+							Inscription::message($identifiant);
+							$resultat = Inscription::activer($identifiant);
 							
 							return 'ok';
 						}
-					
 						else {
-							$resultat = 'L\'adresse email : '.$mail.' ou le pseudo : '.$pseudo.' existent déjà ';
+							$resultat = 'L\'adresse email '.$mail.' existe déjà';
 						}
+					}
+					else {
+						$resultat = 'L\'adresse email saisi n\'est pas valide';
+					}
 				}
 				else {
-					$resultat = 'L\'adresse email saisi n\'est pas valide';
+					$resultat = 'L\'identifiant saisi existe déjà';
 				}
 			}
 			else {
-				var_dump($passeUn);
-				var_dump($passeDe);
 				$resultat = 'Le champ "Saisir un Mot de Passe" et le champ "Resaisir un Mot de Passe" doivent étre identiques';
 			}
 		}
@@ -189,28 +191,23 @@ class Inscription {
 		return $resultat;
 	}
 	// creation du profil
-	public static function profil($civilite, $nom, $prenom,$pseudo, $ville,$voie,$type,$date_de_naissance, $pays, $mail, $pass,$numero) {
+	public static function profil($civilite, $nom, $prenom, $ville, $pays, $identifiant, $mail, $pass) {
 		$pass = Cryptage::crypter($pass);
-		$resultat = Bdd::connectBdd()->prepare("INSERT INTO membre (nom,prenom,pseudo,civilite,ville,voie,pays,date_naissance,type,niveau,mdp,mail,numeros_telephone)VALUES (:nom,:prenom,:pseudo,:civilite,:ville,:voie,:pays,:date_de_naissance,:type,1,:pass,:mail,:numero);");
+		$resultat = Bdd::connectBdd()->prepare(INSERT.MEMBREZ.PROFIL."; ".UPDATE.MEMBREZ.NEWPROFIL);
+		$resultat -> bindParam(":login", $identifiant);
 		$resultat -> bindParam(":mail", $mail);
 		$resultat -> bindParam(":pass", $pass);
 		$resultat -> bindParam(":nom", $nom);
 		$resultat -> bindParam(":prenom", $prenom);
-		$resultat -> bindParam(":pseudo", $pseudo);
 		$resultat -> bindParam(":ville", $ville);
 		$resultat -> bindParam(":pays", $pays);
 		$resultat -> bindParam(":civilite", $civilite);
-		$resultat -> bindParam(":voie", $voie);
-		$resultat -> bindParam(":date_de_naissance", $date_de_naissance);
-		$resultat -> bindParam(":type", $type);
-		$resultat -> bindParam(":numero", $numero);
-
 
 		$resultat -> execute();
 	}
 	// creation de la protection du profil
-	public static function protect($mail) {
-		$id = Membre::recupId($mail);
+	public static function protect($login) {
+		$id = Membre::recupId($login);
 		$resultat = Bdd::connectBdd()->prepare(INSERT.ACCESPROFILZ.INSCRIPTION);
 		//die (INSERT.ACCESPROFILZ.INSCRIPTION.$id);
 		$resultat -> bindParam(':id', $id, PDO::PARAM_INT, 11);
@@ -218,7 +215,7 @@ class Inscription {
 		$resultat -> execute();
 	}
 	// creation du message de bienvenue
-	public static function message($mail) {
+	public static function message($login) {
 		/*$id_dest = Membre::recupId($login);
 		$id_exp = '2';
 		$titre = 'Bienvenue et Profil';
@@ -235,18 +232,18 @@ class Inscription {
 	// activation du membre
 	// recuperation de la methode d'activation du site
 	// puis activation du membre
-	public static function activer($mail) {
+	public static function activer($login) {
 		$activation = Bdd::connectBdd()->prepare(SELECT.ALL.ACTIVATION.METHODEACTIV);
 		$activation -> execute();
 		$methode = $activation -> fetch(PDO::FETCH_ASSOC);
 		switch($methode['id']) {
 			case 1 :
-			Activation::activationAuto($mail);
+			Activation::activationAuto($login);
 			$resultat = 'Votre inscription est terminée, vous pouvez maintenant vous connecter.<br /><a href="/index.php">Connexion</a>';
 			break;
 				
 			case 2 :
-			Activation::activationMail($mail);
+			Activation::activationMail($login);
 			$resultat = 'Votre inscription est terminée, un email de confirmation viens de vous &ecirc;tre envoyé,<br />pensez a v&eacute;rifier vos spams.';
 			break;	
 				
@@ -306,7 +303,7 @@ class Connexion {
 				$headers .='Content-Type: text/plain; charset="utf-8"'."<br/>";
 				$headers .='Content-Transfer-Encoding: 8bit'; 
 				$sujet = "ENERBIOFLEX - Nouveau mot de passe";
-				$contenu = 'Bonjour '.$donnee['mail'].','."<br/><br/>";
+				$contenu = 'Bonjour '.$donnee['login'].','."<br/><br/>";
 				$contenu .= "Voici votre nouveau mot de passe : ".$newPass."<br/><br/>";
 				$contenu .= 'Cordialement,'."<br/>";
 				$contenu .= NOMSITE.'.'."<br/>";
@@ -337,28 +334,14 @@ class Connexion {
 	// 		Si login existe pas => retourne faux
 	// Si le captcha est faux => retourne faux
 	public static function connexionCreate() {
-		if(Captcha::captchaVerif() AND !empty($_POST['mail']) AND !empty($_POST['pass'])) {
-			if(Connexion::verifLogin($_POST['mail'])) {
+		if(Captcha::captchaVerif() AND !empty($_POST['login']) AND !empty($_POST['pass'])) {
+			if(Connexion::verifLogin($_POST['login'])) {
 				//die ('déroulement');
-				if(Connexion::verifPass($_POST['pass'], $_POST['mail'])) {
-					session_start();
-
-					$_SESSION['id'] = Membre::recupId($_POST['mail']);
-					$info=Membre::allInfo($_SESSION['id']);
-					$_SESSION['jeton'] = Connexion::jeton($_POST['mail']);
-					Connexion::niveau($_POST['mail']);
+				if(Connexion::verifPass($_POST['pass'], $_POST['login'])) {
+					$_SESSION['id'] = Membre::recupId($_POST['login']);
+					$_SESSION['jeton'] = Connexion::jeton($_POST['login']);
+					Connexion::niveau($_POST['login']);
 					Connexion::updateDate($_SESSION);
-					//Infos compte
-					$_SESSION['mail'] = $info['mail'];
-					//Infos utilisateur
-					$_SESSION['nom'] = $info['nom'];
-					$_SESSION['prenom'] = $info['prenom'];
-					$_SESSION['date_naissance'] = $info['date_naissance'];
-					$_SESSION['numeros_telephone'] = $info['numeros_telephone'];
-					$_SESSION['type'] = $info['type'];
-					$_SESSION['profession'] = $info['profession'];
-					$_SESSION['nom_entreprise'] = $info['nom_entreprise'];
-					$_SESSION['photo_profil'] = $info['photo'];
 					return "0";
 				}
 				else {
@@ -382,9 +365,9 @@ class Connexion {
 		}
 	}
 	// Fonction de verification que l'identifiant existe dans la bdd
-	public static function verifLogin($mail) {
-		$resultat = Bdd::connectBdd()->prepare('SELECT * from membre where mail=:mail');
-		$resultat -> bindParam(':mail', $mail);
+	public static function verifLogin($login) {
+		$resultat = Bdd::connectBdd()->prepare(SELECT.ALL.MEMBRE.LOGIN);
+		$resultat -> bindParam(':login', $login, PDO::PARAM_STR, 50);
 		$resultat -> execute();
 		if($resultat -> rowCount() === 1) {
 			return true;
@@ -394,9 +377,9 @@ class Connexion {
 		}
 	}
 	// Function de verification du mot de passe
-	public static function verifPass($pass, $mail) {
-		$resultat = Bdd::connectBdd()->prepare('SELECT * from membre where mail=:mail');
-		$resultat -> bindParam(':mail', $mail);
+	public static function verifPass($pass, $login) {
+		$resultat = Bdd::connectBdd()->prepare(SELECT.ALL.MEMBRE.LOGIN);
+		$resultat -> bindParam(':login', $login, PDO::PARAM_STR, 50);
 		$resultat -> execute();
 		$donnee = $resultat -> fetch(PDO::FETCH_ASSOC);
 		if(Cryptage::crypter($pass) === $donnee['mdp']) {
@@ -414,8 +397,8 @@ class Connexion {
 	// 	-> creation d'un jeton de connexion
 	// 	-> enregistrement du jeton
 	//  -> retourne le jeton
-	public static function jeton($mail) {
-		$id = Membre::recupId($mail);
+	public static function jeton($login) {
+		$id = Membre::recupId($login);
 		$ip = Ip::get_ip();
 		$date = time();
 		$resultat = Bdd::connectBdd()->prepare(SELECT.ALL.JETON.JETONCONNEXION);
@@ -424,7 +407,7 @@ class Connexion {
 		$resultat -> execute();
 		if($resultat -> rowCount() === 1) {
 			$donnee = $resultat->fetch(PDO::FETCH_ASSOC);
-			$id = Membre::recupId($mail);
+			$id = Membre::recupId($login);
 			$maj = Bdd::connectBdd()->prepare(UPDATE.JETONZ.JETONDATE.JETONMEMBRE);
 			$maj -> bindParam(':id', $id);
 			$maj -> bindParam(':date', $date);
@@ -455,9 +438,9 @@ class Connexion {
 	//		-> activation auto -> retourne la fonction au debut
 	// 		-> activation par mail -> envoie le mail d'activation puis redirige vers une page d'information
 	// 		-> activation maunel -> redirige vers une page d'information
-	public static function niveau($mail) {
-		$resultat = Bdd::connectBdd()->prepare('SELECT * FROM membre where mail=:mail');
-		$resultat -> bindParam(':mail',$mail);
+	public static function niveau($login) {
+		$resultat = Bdd::connectBdd()->prepare(SELECT.ALL.MEMBRE.LOGIN);
+		$resultat -> bindParam(':login', $login, PDO::PARAM_STR, 50);
 		$resultat -> execute();
 		$donnee = $resultat->fetch(PDO::FETCH_ASSOC);
 		if($donnee['activation'] === '1') {
@@ -487,12 +470,12 @@ class Connexion {
 			$methode = $activation->fetch(PDO::FETCH_ASSOC);
 			switch($methode['id']) {
 				case 1 :
-				Activation::activationAuto($mail);
-				return Connexion::niveau($mail);
+				Activation::activationAuto($login);
+				return Connexion::niveau($login);
 				break;
 				
 				case 2 :
-				Activation::activationMail($mail);
+				Activation::activationMail($login);
 				$redirect = redirection(activationMail);
 				break;	
 				
@@ -512,10 +495,10 @@ class Connexion {
 class Activation {
 	
 	// fonction activation automatique
-	public static function activationAuto($mail) {
+	public static function activationAuto($login) {
 		$activ = '1';
-		$resultat = Bdd::connectBdd()->prepare('UPDATE membre SET activation =:activer where mail=:mail');
-		$resultat -> bindParam(':mail', $mail);
+		$resultat = Bdd::connectBdd()->prepare(UPDATE.MEMBREZ.ACTIVMEMBRE.LOGIN);
+		$resultat -> bindParam(':login', $login);
 		$resultat -> bindParam(':activer', $activ);
 		$resultat -> execute();
 	}
@@ -529,8 +512,8 @@ class Activation {
 	// 		retourne vrai
 	// Sinon
 	//		retourne faux
-	public static function activationMail($mail) {
-		$id = Membre::recupId($mail);
+	public static function activationMail($login) {
+		$id = Membre::recupId($login);
 		$resultat = Bdd::connectBdd()->prepare(SELECT.ALL.JETONMAIL.IDMEMBRE);
 		$resultat -> bindParam(':id', $id, PDO::PARAM_INT, 11);
 		$resultat -> execute();
@@ -545,7 +528,7 @@ class Activation {
 			$insert -> bindParam(':jeton', $jeton);
 			$insert -> execute();
 		}
-		if(Activation::activationEnvoiMail($mail, $jeton)) {
+		if(Activation::activationEnvoiMail($login, $jeton)) {
 			return true;
 		}
 		else {
@@ -553,8 +536,8 @@ class Activation {
 		}
 	}
 	// envoie du mail d'activation
-	public static function activationEnvoiMail($mail, $jeton) {
-		$id = Membre::recupId($mail);
+	public static function activationEnvoiMail($login, $jeton) {
+		$id = Membre::recupId($login);
 		$dest = Membre::info($id, 'mail');
 		$lien = URLSITE."/activation.php?jeton=".$jeton;
 		$headers ='From: "'.Membre::info($id, 'nom').' '.Membre::info($id, 'prenom').'"'.Membre::info($id, 'mail').''."<br/>";
@@ -611,7 +594,7 @@ class Activation {
 		$resultat -> execute();
 		if($resultat -> rowCount() === 1) {
 			$donnee = $resultat -> fetch(PDO::FETCH_ASSOC);
-			Activation::activationAuto($donnee['mail']);
+			Activation::activationAuto($donnee['login']);
 			return true;
 		}
 		else {
@@ -649,6 +632,9 @@ class ProtectEspace {
 			header('Location: /membre/deconnexion.php');
 		}
 		else {
+			if($niveau != '1' && $niveau != '2' && $niveau != '3') {
+				header('Location: /membre/deconnexion.php');
+			}
 			$resultat = Bdd::connectBdd()->prepare(SELECT.ALL.JETON.JETONSESSION);
 			$resultat -> bindParam(':id', $id, PDO::PARAM_INT, 11);
 			$resultat -> bindParam(':jeton', $jeton);
@@ -787,9 +773,9 @@ class ProtectEspace {
 // La classe Membre
 class Membre {
 	//Fonction de recuperation de l'id d'un membre à partir du login
-	public static function recupId($mail) {
-		$resultat = Bdd::connectBdd()->prepare('select * from membre where mail=:mail');
-		$resultat -> bindParam(':mail', $mail);
+	public static function recupId($login) {
+		$resultat = Bdd::connectBdd()->prepare(SELECT.ALL.MEMBRE.LOGIN);
+		$resultat -> bindParam(':login', $login, PDO::PARAM_STR, 50);
 		$resultat -> execute();
 		$donnee = $resultat -> fetch(PDO::FETCH_ASSOC);
 		return $donnee['id'];
@@ -803,15 +789,6 @@ class Membre {
 		$resultat -> execute();
 		$infoMembre = $resultat -> fetch(PDO::FETCH_ASSOC);
 		return $infoMembre[$info];
-	}
-	//fonction de recuperation de tout les infos du membre
-	//à partir de l'id
-	public static function allInfo($id) {
-		$resultat = Bdd::connectBdd()->prepare(SELECT.ALL.MEMBRE.ID);
-		$resultat -> bindParam(':id', $id, PDO::PARAM_INT, 11);
-		$resultat -> execute();
-		$infoMembre = $resultat -> fetch(PDO::FETCH_ASSOC);
-		return $infoMembre;
 	}
 	// Recuperation du nombre de publications du membre
 	// $id => id du membre
@@ -874,7 +851,7 @@ class Membre {
 		}
 	}
 	// Mise a jour du profil du membre
-	public static function majProfil($id, $date_naissance, $civilite, $nom, $prenom, $mail, $pays, $ville,$voie,$profession,$nom_entreprise, $mailing, $description, $photo) {
+	public static function majProfil($id, $date_naissance, $civilite, $nom, $prenom, $mail, $pays, $ville, $mailing, $description, $photo) {
 		$description = filter_var($description, FILTER_SANITIZE_STRING);
 		$description = nl2br($description);
 		$resultat = Bdd::connectBdd()->prepare(UPDATE.MEMBREZ.MAJPROFIL);
@@ -889,9 +866,6 @@ class Membre {
 		$resultat -> bindParam(':mailing', $mailing);
 		$resultat -> bindParam(':id', $id, PDO::PARAM_INT, 11);
 		$resultat -> bindParam(':photo', $photo);
-		$resultat -> bindParam(':voie', $voie);
-		$resultat -> bindParam(':profession', $profession);
-		$resultat -> bindParam(':nom_entreprise', $nom_entreprise);
 		$resultat -> execute();
 		//redirection('profil.php');
 	}
@@ -933,7 +907,7 @@ class Membre {
 
 ###########################################################################################
 
-// La classe 
+// La classe Message
 class Message {
 	
 	// Verification que le message envoye ne contient pas de mots interdits
