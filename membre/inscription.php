@@ -17,7 +17,7 @@ echo '
 					secureform($_POST);
 					extract($_POST);
 					
-					$er =  Inscription::inscrire($civilite, $nom, $prenom,$pseudo, $ville,$voie,$type,$date_de_naissance, $pays, $email, $passeUn, $passeDe,$numero);
+					$er =  Inscription::inscrire($civilite, $nom, $prenom, $ville, $pays, $identifiant, $email, $passeUn, $passeDe);
 				}
 				echo '</td>
 			</tr>
@@ -30,17 +30,6 @@ echo '
 					</select></td>
 			</tr>
 			<tr>
-				<td align="left" class="titre_form" width="40%"> Vous êtes : </td>
-				<td><select name="type"> 
-						<option value="pro"> Professionnelle </option> 
-						<option value="par"> Particulier </option>
-					</select></td>
-			</tr>
-			<tr>
-				<td align="left" class="titre_form" width="40%"> Pseudo : </td>
-				<td><input type="text" name="pseudo" size="40" required /></td>
-			</tr>
-			<tr>
 				<td align="left" class="titre_form" width="40%"> Nom : </td>
 				<td><input type="text" name="nom" size="40" required /></td>
 			</tr>
@@ -49,8 +38,16 @@ echo '
 				<td><input type="text" name="prenom" size="40"  required /></td>
 			</tr>
 			<tr>
-				<td align="left" class="titre_form" width="40%"> Date de naissance: </td>
-				<td><input type="date" name="date_de_naissance" size="40"  required /></td>
+				<td align="left" class="titre_form" width="40%"> Ville : </td>
+				<td><input type="text" name="ville" size="40"  required /></td>
+			</tr>
+			<tr>
+				<td align="left" class="titre_form" width="40%"> Pays : </td>
+				<td><select name="pays" id="pays">'; include("listepays.php"); echo '</select></td>
+			</tr>
+			<tr>
+				<td align="left" class="titre_form" width="40%">Login : </td>
+				<td><input type="text" name="identifiant" size="40" required /></td>
 			</tr>
 			<tr>
 				<td align="left" class="titre_form" width="40%">Email : </td>
@@ -68,22 +65,7 @@ echo '
 				<td align="left" class="titre_form" width="40%">Confirmer le mot de passe : </td>
 				<td><input type="password" name="passeDe" size="40" required/></td>
 			</tr>
-			<tr>
-				<td align="left" class="titre_form" width="40%"> Adresse : </td>
-				<td><input type="text" name="voie" placeholder="Voie" size="40"  required /></td>
-			</tr>
-			<tr>
-				<td><input type="text" name="ville" placeholder="ville" size="40"  required /></td>
-				<td><input type="text" name="cp" placeholder="Code postale" size="40"  required /></td>
-			</tr>
-			<tr>
-				<td align="left" class="titre_form" width="40%"> Numéro de téléphone : </td>
-				<td><input type="text" name="numero" placeholder="téléphone" size="40"  required /></td>
-			</tr>
-			<tr>
-				<td align="left" class="titre_form" width="40%"> Pays : </td>
-				<td><select name="pays" id="pays">'; include("listepays.php"); echo '</select></td>
-			</tr>		
+						
 			<tr>
 				<td colspan="2" align="center">
 				<br />

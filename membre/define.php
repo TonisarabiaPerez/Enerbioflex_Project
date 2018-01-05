@@ -53,7 +53,7 @@ define('NEWPROFIL', ' SET nom=:nom, prenom=:prenom, ville=:ville, pays=:pays, ci
 define('IDMEMBRE', ' WHERE id_membre=:id');
 define('LOGIN', ' WHERE login=:login');
 define('ACTIVMEMBRE', ' SET activation=:activer');
-define('MAJPROFIL', ' SET mail=:mail, ville=:ville, pays=:pays, civilite=:civilite, date_naissance=:date_naissance, nom=:nom, prenom=:prenom, description=:description, mailing=:mailing, photo=:photo, voie=:voie,profession=:profession,nom_entreprise=:nom_entreprise WHERE id=:id');
+define('MAJPROFIL', ' SET mail=:mail, ville=:ville, pays=:pays, civilite=:civilite, date_naissance=:date_naissance, nom=:nom, prenom=:prenom, description=:description, mailing=:mailing, photo=:photo WHERE id=:id');
 define('MAJAVATAR', ' SET id_avatar=:idAvatar');
 define('MAJPASS', ' SET mdp=:newPass');
 define('MAJDATECO', ' SET date_connexion=:currentdt');
