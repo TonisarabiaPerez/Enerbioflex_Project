@@ -45,7 +45,7 @@ require ('header.php');
 						$post = $req->fetch(PDO::FETCH_ASSOC);	
 						
 						//Req auteur topics
-						$requete = $bd->prepare('SELECT login,photo FROM membre WHERE id=:id_auteur');
+						$requete = $bd->prepare('SELECT pseudo,photo FROM membre WHERE id=:id_auteur');
 						$requete->bindValue(':id_auteur',$post['id_auteur']);
 						$requete->execute();
 						$auteur=$requete->fetch(PDO::FETCH_ASSOC);
@@ -54,10 +54,10 @@ require ('header.php');
 						<div class="flexcom">
 							<div class="flexc1full">
 								<img class="img_profil" src="'.$folder.'Images/membre/'.$auteur['photo'].'"/><br/>
-								<b> '.$auteur['login'].'</b>
+								<b> '.$auteur['pseudo'].'</b>
 							</div>
 							<div class="flexc2">
-								Sujet de '.$auteur['login'].', 
+								Sujet de '.$auteur['pseudo'].', 
 								Posté le '.
 										$post['jour'].'/'.$post['mois'].'/'.$post['annee'].' à '.
 										$post['heure'].'h'.$post['minute'].'min'.$post['seconde'].'s
@@ -77,14 +77,14 @@ require ('header.php');
 						while($ligne=$req->fetch(PDO::FETCH_ASSOC)){
 							$id_com = $ligne['id'];
 							//Requete auteur posts
-							$r = $bd->prepare('SELECT login,photo FROM membre WHERE id=:idAuteur');
+							$r = $bd->prepare('SELECT pseudo,photo FROM membre WHERE id=:idAuteur');
 							$r->bindValue(':idAuteur', $ligne['id_auteur']);
 							$r->execute();
 							$li=$r->fetch(PDO::FETCH_ASSOC);
 							
 							echo '<div class="flexcom">
 									<div class= "flexc1">
-										<img class="img_membre" src="../Images/membre/'.$li['photo'].'" alt="avatar"/></br>'.$li['login'].'
+										<img class="img_membre" src="../Images/membre/'.$li['photo'].'" alt="avatar"/></br>'.$li['pseudo'].'
 									</div>						
 									<div class="flexc2full"><b>'.$titre.'</b>, le '.
 										$ligne['jour'].'/'.$ligne['mois'].'/'.$ligne['annee'].' à '.

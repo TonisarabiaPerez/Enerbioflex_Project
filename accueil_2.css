@@ -348,10 +348,8 @@ input[type=checkbox]:checked ~ #menu{
 #menu li a:hover {
  color:#FFD700;
  }
-#menu ul li li  ul {
- display:none;
- }
- #s-menu  {
+
+ .s-menu  {
  display:none;
  }
 
