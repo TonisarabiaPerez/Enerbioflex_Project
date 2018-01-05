@@ -29,11 +29,12 @@ if(!isset($folder)) $folder=''; //NOTE: La variable $folder et les echo $folder 
     </head>
 
 	<body>
-	
-		<div id="page">
+	<div id="page">
 			<header>
-				<a href="<?php echo $folder ?>accueil.php"><img class="logo" src="<?php echo $folder ?>Images/logo2.png" alt="logo"  /></a> 
 
+				<div class="logo"><a href="<?php echo $folder ?>accueil.php"><img width="200px" src="<?php echo $folder ?>Images/image logo.png" alt="logo"  /></a> 
+				</div>
+				
 				<!--
 				<div id="zone_recherche">
 					<input id="texte_recherche" type="text" placeholder="Rechercher" />
@@ -41,28 +42,7 @@ if(!isset($folder)) $folder=''; //NOTE: La variable $folder et les echo $folder 
 				</div>
 				-->
 
-				<div id="reseaux">		
-					<a href="http://www.facebook.com/enerbioflex/info/?tab=page_info" class="fb">
-						<img class="reseau"  src="<?php echo $folder ?>Images/fb_v.jpg" alt="Facebook" />
-					</a>
-
-					<a href="https://twitter.com/enerbioflex">
-						<img class="reseau" src="<?php echo $folder ?>Images/tw_v.jpg" alt="Twitter" />
-					</a>
-					
-					<a href="https://www.youtube.com/channel/UCtRzZBgashQrI6sm1WXzGlA" >
-						<img class="reseau" src="<?php echo $folder ?>Images/yt_v.jpg" alt="Youtube" />
-					</a>
-					
-					<a href="https://www.linkedin.com/company/enerbioflex">
-						<img class="reseau" src="<?php echo $folder ?>Images/in_v.jpg" alt="Linkedin" />
-					</a>
-					
-					<a href="https://www.dailymotion.com">
-						<img class="reseau" src="<?php echo $folder ?>Images/dm_v.jpg" alt="Dailymotion" />
-					</a>
-					
-				</div>
+			
 			</header>
 		<div id="menu">
 		<nav>
@@ -71,27 +51,19 @@ if(!isset($folder)) $folder=''; //NOTE: La variable $folder et les echo $folder 
 			<ul>
 				<li><a href="<?php echo $folder ?>accueil.php">Accueil</a></li>
 				<li><a href="<?php echo $folder ?>forum/menuForum.php">ThinkTank </a>
-				<?php if(!empty($_SESSION['id'])){ ?>
 				<ul id="s-menu">
-      				<li><a href="#">ThinkTank</a></li>
+					<li><a href="<?php echo $folder ?>forum/menuForum.php">ThinkTank </a></li>
       				<li><a href="<?php echo $folder ?>visio/visio.php">Visioconférence</a></li>
       				<li><a href="<?php echo $folder ?>forum/menuForum.php">Forum</a></li>
     			</ul></li>
-    			<?php } ?>
 				<li><a href="<?php echo $folder ?>articles/menuArticle.php">Agriboncoin </a>
-					<?php if(!empty($_SESSION['id'])){ ?>
 					<ul id="s-menu">
-      					<li><a href="#">Agriboncoin</a></li>
+						<li><a href="<?php echo $folder ?>articles/menuArticle.php">Agriboncoin </a></li>
       					<li><a href="#">Offre</a></li>
       					<li><a href="#">Demande</a></li>
 				    </ul></li>
-     			<?php } ?>
      
 				<li><a href="<?php echo $folder ?>supervision/index.php">Supervision </a>
-					<?php if(!empty($_SESSION['id'])){ ?> <ul id="s-menu">
-      				<li><a href="#">Agriboncoin</a></li>
-				</ul></li>
-	 			<?php } ?>
 				<?php if(empty($_SESSION['id'])){ ?>
 				<li><a class="seconnecter" href="<?php echo $folder ?>membre/inscription.php">S'inscrire</a></li>
 				<li><a class="seconnecter" href="<?php echo $folder ?>membre/index.php" >Se Connecter</a></li>
@@ -101,7 +73,6 @@ if(!isset($folder)) $folder=''; //NOTE: La variable $folder et les echo $folder 
 				<?php } ?>
 			</ul>	
 			
-		</nav></div>
-			
-		<br/>
+		</nav>
+		</div>
 		<div id="main">
