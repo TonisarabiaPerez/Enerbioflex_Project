@@ -51,19 +51,19 @@ if(!isset($folder)) $folder=''; //NOTE: La variable $folder et les echo $folder 
 			<ul>
 				<li><a href="<?php echo $folder ?>accueil.php">Accueil</a></li>
 				<li><a href="<?php echo $folder ?>forum/menuForum.php">ThinkTank </a>
-				<ul id="s-menu">
-					<li><a href="<?php echo $folder ?>forum/menuForum.php">ThinkTank </a></li>
+				<ul class="s-menu">
+      				<li><a href="#">ThinkTank</a></li>
       				<li><a href="<?php echo $folder ?>visio/visio.php">Visioconférence</a></li>
       				<li><a href="<?php echo $folder ?>forum/menuForum.php">Forum</a></li>
     			</ul></li>
-				<li><a href="<?php echo $folder ?>articles/menuArticle.php">Agriboncoin </a>
-					<ul id="s-menu">
-						<li><a href="<?php echo $folder ?>articles/menuArticle.php">Agriboncoin </a></li>
-      					<li><a href="#">Offre</a></li>
-      					<li><a href="#">Demande</a></li>
+				<li><a href="<?php echo $folder ?>leboncoin/">Agriboncoin </a>
+					<ul class="s-menu">
+      					<li><a href="<?php echo $folder ?>leboncoin/">Agriboncoin</a></li>
+      					<li><a href="<?php echo $folder ?>leboncoin/php/annonces.php">Annonce</a></li>
+      					<li><a href="<?php echo $folder ?>leboncoin/php/deposer_annonce.php">Deposer une annonce</a></li>
 				    </ul></li>
      
-				<li><a href="<?php echo $folder ?>supervision/index.php">Supervision </a>
+				<li><a href="<?php echo $folder ?>supervision/index.php">Supervision </a></li>
 				<?php if(empty($_SESSION['id'])){ ?>
 				<li><a class="seconnecter" href="<?php echo $folder ?>membre/inscription.php">S'inscrire</a></li>
 				<li><a class="seconnecter" href="<?php echo $folder ?>membre/index.php" >Se Connecter</a></li>

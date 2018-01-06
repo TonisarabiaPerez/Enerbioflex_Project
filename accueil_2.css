@@ -355,10 +355,8 @@ input[type=checkbox]:checked ~ #menu{
  font-weight: bold;
  border-bottom: 1px solid #45BEF8;
  }
-#menu ul li li  ul {
- display:none;
- }
- #s-menu  {
+
+ .s-menu  {
  display:none;
  }
 
