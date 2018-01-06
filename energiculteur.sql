@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  Dim 10 déc. 2017 à 15:28
+-- Généré le :  sam. 06 jan. 2018 à 00:52
 -- Version du serveur :  5.7.19
 -- Version de PHP :  5.6.31
 
@@ -69,12 +69,19 @@ CREATE TABLE IF NOT EXISTS `article` (
   `id_statistique` int(11) NOT NULL,
   PRIMARY KEY (`id_article`),
   KEY `id_utilisateur` (`id_utilisateur`),
-  KEY `id_statistique` (`id_statistique`),
   KEY `departement` (`departement`),
   KEY `region` (`region`),
   KEY `ressource` (`ressource`),
-  KEY `type` (`type`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  KEY `type` (`type`),
+  KEY `article_fk16` (`id_statistique`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `article`
+--
+
+INSERT INTO `article` (`id_article`, `titre`, `description`, `voie`, `ville`, `departement`, `region`, `ressource`, `type`, `photo`, `prix`, `date_publication`, `date_peremption`, `id_utilisateur`, `id_statistique`) VALUES
+(1, 'test', 'test annonce', '18 Square jules cesar', 'ermont', 'Val-d\'Oise', 'Île-de-France', 'Thermique', 'offre', '', '150', '2017-12-23', '2018-01-07', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -36501,10 +36508,10 @@ INSERT INTO `lieux` (`id_lieu`, `commune`, `region`, `departement`) VALUES
 DROP TABLE IF EXISTS `membre`;
 CREATE TABLE IF NOT EXISTS `membre` (
   `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `pseudo` varchar(127) COLLATE latin1_general_ci NOT NULL,
   `nom` varchar(127) COLLATE latin1_general_ci NOT NULL DEFAULT 'Doe',
   `prenom` varchar(127) COLLATE latin1_general_ci NOT NULL DEFAULT 'John',
   `civilite` varchar(6) COLLATE latin1_general_ci DEFAULT NULL,
-  `login` varchar(15) COLLATE latin1_general_ci NOT NULL,
   `mdp` varchar(40) COLLATE latin1_general_ci NOT NULL,
   `mail` varchar(255) COLLATE latin1_general_ci NOT NULL,
   `mailing` tinyint(1) NOT NULL DEFAULT '1',
@@ -36528,9 +36535,18 @@ CREATE TABLE IF NOT EXISTS `membre` (
   `id_alerte` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `ID` (`id`),
+  UNIQUE KEY `pseudo` (`pseudo`),
   UNIQUE KEY `mail` (`mail`),
   KEY `membre_fk1` (`id_alerte`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+--
+-- Déchargement des données de la table `membre`
+--
+
+INSERT INTO `membre` (`id`, `pseudo`, `nom`, `prenom`, `civilite`, `mdp`, `mail`, `mailing`, `ville`, `pays`, `photo`, `description`, `date_naissance`, `niveau`, `adresseIp`, `date_creation`, `date_connexion`, `numeros_telephone`, `type`, `profession`, `nom_entreprise`, `voie`, `region`, `departement`, `activation`, `id_alerte`) VALUES
+(1, 'test', 'latif', 'wail', 'h', 'à”mú!\0žÿ\'[vÅØU', 'test@test.fr', 0, 'ermont', 'France', '', '', '2017-12-04', 1, NULL, NULL, '2018-01-06 12:51:00', '0699372220', 'pro', 'tes', '', '18 Square jules cesar', NULL, NULL, 0, 1),
+(2, 'Univers7', 'wa', 'as', 'h', '*cì¡\r´F¾›]ÈÞDgÐ	', 'Univers7@test.fr', 1, 'ermont', 'France', 'default.jpg', NULL, '2017-12-05', 1, NULL, NULL, '2018-01-06 12:51:00', '0699372220', 'pro', NULL, NULL, '18 Square jules cesar', NULL, NULL, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -36570,7 +36586,15 @@ CREATE TABLE IF NOT EXISTS `post` (
   PRIMARY KEY (`id`),
   KEY `id_auteur_post` (`id_auteur`),
   KEY `id_topic_post` (`id_topic`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+--
+-- Déchargement des données de la table `post`
+--
+
+INSERT INTO `post` (`id`, `id_topic`, `id_auteur`, `contenu`, `date_creation`) VALUES
+(1, 1, 2, '<p>test</p>\r\n', '2017-12-23 14:36:28'),
+(2, 1, 2, '<p>test test</p>\r\n', '2017-12-23 14:36:34');
 
 -- --------------------------------------------------------
 
@@ -36609,7 +36633,7 @@ CREATE TABLE IF NOT EXISTS `sciptactivationmail` (
   `id_membre` int(11) NOT NULL,
   `jeton` varchar(150) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `sciptactivationmail`
@@ -36638,7 +36662,9 @@ INSERT INTO `sciptactivationmail` (`id`, `id_membre`, `jeton`) VALUES
 (23, 48, 'jqv7rALuWG'),
 (24, 49, 'XjCHW8PIdU'),
 (25, 50, 'UFgNCBqgsU'),
-(26, 51, 'tZMzaVGvIP');
+(26, 51, 'tZMzaVGvIP'),
+(27, 1, 'FyNJiUdzEP'),
+(28, 2, '51nDWAS5LR');
 
 -- --------------------------------------------------------
 
@@ -36658,7 +36684,7 @@ CREATE TABLE IF NOT EXISTS `scriptaccesfiches` (
   `nom` int(1) NOT NULL DEFAULT '0',
   `prenom` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `scriptaccesfiches`
@@ -36695,7 +36721,9 @@ INSERT INTO `scriptaccesfiches` (`id`, `id_membre`, `email`, `pays`, `ville`, `g
 (28, 48, 1, 0, 0, 1, 0, 0, 0),
 (29, 49, 1, 0, 0, 1, 0, 0, 0),
 (30, 50, 1, 0, 0, 1, 0, 0, 0),
-(31, 51, 1, 0, 0, 1, 0, 0, 0);
+(31, 51, 1, 0, 0, 1, 0, 0, 0),
+(32, 1, 1, 0, 0, 1, 0, 0, 0),
+(33, 2, 1, 0, 0, 1, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -37720,7 +37748,7 @@ CREATE TABLE IF NOT EXISTS `scriptsecure` (
   `ip_connexion` varchar(50) NOT NULL,
   `date` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `scriptsecure`
@@ -37736,7 +37764,9 @@ INSERT INTO `scriptsecure` (`id`, `id_membre`, `jeton`, `ip_connexion`, `date`) 
 (19, 48, 'ÀTŠ?\0m]šÈç7âBŠN£Ç', '37.169.147.46', '1511357114'),
 (20, 50, '¡\0±ƒÜ6øIñçþ{)ß«’Ð', '80.215.78.252', '1511519102'),
 (21, 51, '>†ÁçÚôLZYAŒ$˜k¤æK×', '80.215.247.193', '1512049530'),
-(22, 51, '_Òæ¨C-¼°z¤é\nÂw}¶æÐZ', '77.136.82.34', '1512052850');
+(22, 51, '_Òæ¨C-¼°z¤é\nÂw}¶æÐZ', '77.136.82.34', '1512052850'),
+(23, 1, 'ÏN–z£\"Rã½ZYjÎ½œµ', '::1', '1515199885'),
+(24, 2, '¤»±Z?ûVkñß}ï“´ò·/!', '::1', '1514041857');
 
 -- --------------------------------------------------------
 
@@ -37867,6 +37897,13 @@ CREATE TABLE IF NOT EXISTS `topic` (
   KEY `id_auteur` (`id_auteur`),
   KEY `id_forum_topic` (`id_forum`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+--
+-- Déchargement des données de la table `topic`
+--
+
+INSERT INTO `topic` (`id`, `id_forum`, `id_auteur`, `titre`, `date_creation`) VALUES
+(1, 1, 2, 'test', '2017-12-23 14:36:28');
 
 -- --------------------------------------------------------
 
