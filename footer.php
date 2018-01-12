@@ -39,7 +39,7 @@
 						</a>
 						
 						<a href="https://www.linkedin.com/company/enerbioflex">
-							<img class="reseau" src="<?php echo $folder ?>Images/lk.jpg" alt="Linkedin" />
+							<img class="reseau" src="<?php echo $folder ?>Images/lk.png" alt="Linkedin" />
 						</a>
 						
 						<a href="https://www.dailymotion.com">
