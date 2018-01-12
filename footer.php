@@ -18,7 +18,7 @@
 						 <div id="Up"><img width="40px" src="<?php echo $folder ?>Images/up-arrow.png" alt="fleche"  /></div>
 						<div id="textefooterTitre">Contactez nous: </div>
 
-						<div id="textefooter"><i><a href="mailto:enerbioflex@gmail.com"> - Par mail :</a> enerbioflex@gmail.com<br/>
+						<div id="textefooter"><i><a href="mailto:enerbioflex@gmail.com"> - Par mail : enerbioflex@gmail.com</a><br/>
 						 					   - Par courrier : EnerBioFlex, 9 rue de la Prairie, 60650 Saint-Paul<br/>
 						 					  - Par téléphone : 0123456789<br/> </div>
 						
