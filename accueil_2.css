@@ -69,7 +69,7 @@ Rouge alert: ec7148
 /*...........................................LOGO............................................................*/
 a{
 	text-decoration:none;
-	color: #4D4D4D;
+	color: white;
 	display: inline-block;
 	margin:0 auto;
 }
@@ -570,6 +570,7 @@ height: 100%;
 /*********************************FIN MAIN****************************************************************/
 
 
+
  /*............................................bas de page..............................................*/
 
  footer{
@@ -583,27 +584,20 @@ height: 100%;
 
 	}
  
- .partenaire{
+ #partenaire{
 
 
 	font-size:15px;
 	text-align:center;
-	background: none repeat scroll 0% 0% ;
-	/*background-color:#ddd;*/
-	background-image: -moz-linear-gradient(90deg, #2caab3 0%, #2c8cb3 100%);
-    background-image: -webkit-linear-gradient(90deg, #2caab3 0%, #2c8cb3 100%);
-    background-image: -ms-linear-gradient(90deg, #2caab3 0%, #2c8cb3 100%);
-
-	/* padding-bottom:5px; */
-	/* padding-right:20px; */
-	/* padding-left:20px; */
+	background-color: #01ABFC;
+	
 }
 
 
 
 .partenaireLogo{
 	width:100px;
-	height:100x;
+	height:100px;
 	margin:10px;
 
 
@@ -620,10 +614,11 @@ hr{
 
 	position: relative;
 	font-size:15px;
-	height: 130px;
+	height: 110px;
+	padding:25px;
 	background-color: #282828;
-	padding-bottom:67px;
-	padding:30px;
+	
+	
 	color:#FFF;
 
 	
@@ -634,22 +629,20 @@ hr{
 #reseaux{
 	
 	
-	width:270px;
-	height:50px;
+	
 	display: inline-block;
 	float: right;
-	margin-top: 20px;
-	margin-right: 20px;
-	right:80px;
-	bottom: 65px;
 	
+	margin-right: 5%;
+	
+	margin-top: 7px;
 	
 	
 }
 
 .reseau{
-	width:50px;
-	height:50px;
+	width:40px;
+	height:40px;
 	
 }
 
@@ -658,22 +651,29 @@ hr{
 
 #textefooter{
 	
-		text-align: left;
+		
 		display: inline-block;
 		margin-top: 20px;
-		width:400px;
-		left: 40px
+		
+		float:left;
+		margin-left: 6.5%;
+		margin-top: 7px;
+		
+		font-family:Times New Roman, sans-serif;
+		font-size: 17px;
 		
 		
 
 }
 
-.textefooterT{
-		margin: 0 auto;
+#textefooterTitre{
+		
+		
 		display: block;
-		text-align: center;
-		font-family: "Courrier New", sans-serif;
-		font-size: 16px;
+		width:150px;
+		font-family:Georgia, sans-serif;
+		font-size: 18px;
+		
 
 		
       	
@@ -682,14 +682,34 @@ hr{
 
 
 }
-
-
-.textefooterX{
+#textefooterTitreReseau{
+	display: inline-block;
 	
-    position: absolute;
-    bottom: 2px;
-    right: 3px;
-    color:#9C9E9D;
+	float:right;
+	margin-top: 7px;
+	margin-right: 0.5%;
+	font-size:17px;
+	font-family:Times New Roman, sans-serif;
+
+
 }
 
+
+#textefooterX{
+	
+    position: absolute;
+    display: inline-block;
+    bottom: 2px;
+    right: 3px;
+    color:white;
+   
+    font-style: italic;
+    font-size:13px;
+}
+#Up{
+	display:inline-block;
+	float:right;
+	
+
+}
 
