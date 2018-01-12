@@ -69,7 +69,7 @@ Rouge alert: ec7148
 /*...........................................LOGO............................................................*/
 a{
 	text-decoration:none;
-	color: white;
+	color: #4D4D4D;
 	display: inline-block;
 	margin:0 auto;
 }
@@ -665,7 +665,9 @@ hr{
 		
 
 }
-
+footer a {
+	color:white;
+}
 #textefooterTitre{
 		
 		
