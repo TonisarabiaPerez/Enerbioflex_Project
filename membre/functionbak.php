@@ -1,6 +1,6 @@
 <?php 
 include('define.php');
-
+//commit
 // La fonction de redirection de base
 function redirection($url, $time=0) {
 	if (!headers_sent()) {
