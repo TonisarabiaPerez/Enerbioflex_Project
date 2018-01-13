@@ -3,20 +3,19 @@ include('header.php');
 include ($folder.'visio/function.php');
 include ($folder.'visio/afficherVisio.php');
 date_default_timezone_set('Europe/Paris');
-
+echo 
+	' <div id="main">';
 include('menu.php');
 echo Message::nouveauNb($_SESSION['id']);
 ?>
-
-
-<h2>Mes Posts</h2>
-<hr width="25%" align="left" color="2a95be"/> 
+<h2><center>Mes Posts</center></h2>
+<hr width="25%" align="center" color="2a95be"/> 
 <?php 
 	$req = Bdd::connectBdd()->prepare('select titre from topic where topic.id_auteur = :id order by titre');
 	$req->bindValue(':id',$_SESSION['id']);
 	$req->execute();
 	if( ($article = $req->fetch(PDO::FETCH_ASSOC)) ){
-		echo '<ul>';
+		echo '<ul id="liste">';
 		do{
 			extract($article);
 			echo '
@@ -24,13 +23,13 @@ echo Message::nouveauNb($_SESSION['id']);
 		} while($article = $req->fetch(PDO::FETCH_ASSOC));
 		echo '</ul>';
 	}
-	else echo '<p> Vous n\'avez aucun post sur le forum. </p>';
+	else echo '<p><center> Vous n\'avez aucun post sur le forum. </center></p>';
 ?>		
 
-<a href="<?php echo $folder ?>forum/creerSujet.php" class="myButton">+ Ecrire un Sujet</a>
+<center><a href="<?php echo $folder ?>forum/creerSujet.php" class="myButton">Ecrire un Sujet</a></center>
 
-<h2>Mes Visioconférences </h2>
-<hr width="25%" align="left" color="2a95be"/>
+<center><h2>Mes Visioconférences </h2></center>
+<hr width="25%" align="center" color="2a95be"/>
 <div id="horaires">
 <?php 
 	$currentdt = date('Y-m-d h:i');
@@ -85,9 +84,10 @@ echo Message::nouveauNb($_SESSION['id']);
 			$req -> execute();
 		}
 	}
-	else echo '<p> Vous n\'avez aucune conférence prévue. </p>';
+	else echo '<p><center> Vous n\'avez aucune conférence prévue.</center> </p>';
 		
 ?>	
+</div>
 </div>
 
 <?php
