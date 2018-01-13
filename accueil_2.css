@@ -335,7 +335,10 @@ input[type=checkbox]:checked ~ #menu{
 		display:block;
 	}
 }
-
+#menu 
+{border-bottom: 1px solid #eee;
+box-shadow: 0px 1px 6px #DDE0E0; 
+}
 #menu ul {
  margin:0;
  padding:0;
@@ -638,15 +641,12 @@ margin-top: 20px;
 margin-bottom: 63px;
 
 }
-.divResult a{
-
-}
 .tabPoint:hover{
-	box-shadow: 0px 2px 2px;
 	margin-top:-10px;
 
 }
 .tabPoint {
+box-shadow: 0px 2px 2px;
 overflow: hidden;
 display: flex;
 flex-direction: column;

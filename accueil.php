@@ -1,5 +1,6 @@
 <?php
 	require('header.php');
+	require("function.php");
 /*julien : test retirer identification au démarrage
 	require_once('connexion.php');*/
 ?>	
@@ -54,48 +55,8 @@
 		
 	<section class="post">
 		<h4> Les derniers posts</h4> 
-		
-			
 			<div class="divResult">
-				<a href="#">
-  					<div class="tabPoint ">
-  						<div class="titreP">
-  							<h5>TEST</h5>
-  						</div>
-  						<div class="descr">
-  							<p>test descr</p>
-  							<div class="infoP">
-  								<p>Par test le xx/xx/xxxx </p>
-  							</div>	
-  						</div>	
-					</div>
-				</a>
-				<a href="#">
-					<div class="tabPoint">
-  						<div class="titreP">
-  							<h5>TEST</h5>
-  						</div>
-  						<div class="descr">
-  							<p>test descr</p>
-  	   						<div class="infoP">
-  								<p>Par test le xx/xx/xxxx </p>
-  							</div>	
-  						</div>			
-					</div>
-				</a>
-				<a href="#">
-				 	<div class="tabPoint">
-  						<div class="titreP">
-  							<h5>TEST</h5>
-  						</div>
-  						<div class="descr">
-  							<p>test descr</p>
-  							<div class="infoP">
-  								<p>Par test le xx/xx/xxxx </p>
-  							</div>	
-  						</div>			 		
-					</div>
-				</a>
+				<?php dernierPost();?>
 			</div>
 	</section>
 </div>
