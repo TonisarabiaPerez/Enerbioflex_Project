@@ -75,9 +75,12 @@ if(!empty($err)) {
 
 include('menu.php');
 echo '
-<div>Votre Profil '.Membre::info($_SESSION['id'], 'pseudo').'</div>
+<center><p>Mon Profil</p></center>
+
 <form action="" method="post" enctype="multipart/form-data">
-<table width="70%" align="center">';
+<fieldset class="fieldsetInscr">
+<center><img class="img_profil" src="'.$folder.'Images/membre/'.Membre::info($_SESSION['id'], 'photo').'" alt="photo"><center>
+<table cellpadding="8" width="80%" align="center">';
 
 echo  
 //<tr>
@@ -95,9 +98,7 @@ echo
 <td>
 <input type="file" name="photo" value="'.Membre::info($_SESSION['id'], 'photo').'">
 </td>
-<td>
-<img class="img_profil" src="'.$folder.'Images/membre/'.Membre::info($_SESSION['id'], 'photo').'" alt="photo">
-</td>
+
 </tr>
 <tr>
 <td align="right" class="titre_form">Votre Mail* : </td>
@@ -166,10 +167,11 @@ if (Membre::info($_SESSION['id'], 'type')=="pro")
 }
 echo
 '<tr>
-<td align="right" colspan="4">
+<td align="center" colspan="4">
 <a href="change_pass.php" class="input">Changer le mot de passe</a>
 </td>
-</tr><tr>
+</tr>
+<tr>
 <td colspan="3"><p>&nbsp;</p></td>
 </tr><tr>
 <td colspan="3" align="center" class="titre_form">Votre Description :</td>
@@ -186,6 +188,7 @@ echo
 </tr>
 </table>
 </form>
+
 ';
 include('footer.php');
 ?>
