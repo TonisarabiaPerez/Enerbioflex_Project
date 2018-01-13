@@ -18,7 +18,7 @@
 	<div id="intro">
 		
 		<div id="text">
-		<H3 align="center">Energiculteur c’est quoi ? </H3>
+		<h4 align="center">Energiculteur c’est quoi ? </h4>
 			<link rel="stylesheet" type="text/css" href="accueil_2.css"/>
 			
 				<p align="center">Energiculteur est la plateforme d’aide à la décision 
@@ -42,7 +42,7 @@
 		<img src="Images/img3.jpeg" alt="fond"/>						
 	</div>
 	<div id="video">
-		<H4>En savoir plus ?</H4>
+		<h4>En savoir plus ?</h4>
 		<video width="800" controls="controls" src="video.mp4"> 
     		<p itemprop="genre">Vous n'avez pas de navigateur moderne, ni flash d'installé sur Internet Explorer... suivez les liens ci-dessous pour télécharger les vidéos.</p>  
    		</video>
@@ -53,17 +53,49 @@
 		
 		
 	<section class="post">
-		<hr width="100%" color=2a95be/> 
-		<h3> Les derniers posts</h3> 
+		<h4> Les derniers posts</h4> 
 		
 			
 			<div class="divResult">
-  				<div class="tabPointO ">
-				</div>
-				<div class="tabPointO2">
-				</div>
-			 	<div class="tabPointO3">
-				</div>
+				<a href="#">
+  					<div class="tabPoint ">
+  						<div class="titreP">
+  							<h5>TEST</h5>
+  						</div>
+  						<div class="descr">
+  							<p>test descr</p>
+  							<div class="infoP">
+  								<p>Par test le xx/xx/xxxx </p>
+  							</div>	
+  						</div>	
+					</div>
+				</a>
+				<a href="#">
+					<div class="tabPoint">
+  						<div class="titreP">
+  							<h5>TEST</h5>
+  						</div>
+  						<div class="descr">
+  							<p>test descr</p>
+  	   						<div class="infoP">
+  								<p>Par test le xx/xx/xxxx </p>
+  							</div>	
+  						</div>			
+					</div>
+				</a>
+				<a href="#">
+				 	<div class="tabPoint">
+  						<div class="titreP">
+  							<h5>TEST</h5>
+  						</div>
+  						<div class="descr">
+  							<p>test descr</p>
+  							<div class="infoP">
+  								<p>Par test le xx/xx/xxxx </p>
+  							</div>	
+  						</div>			 		
+					</div>
+				</a>
 			</div>
 	</section>
 </div>

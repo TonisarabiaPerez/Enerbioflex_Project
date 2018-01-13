@@ -399,7 +399,7 @@ class Connexion {
 		$resultat -> bindParam(':mail', $mail);
 		$resultat -> execute();
 		$donnee = $resultat -> fetch(PDO::FETCH_ASSOC);
-		if(Cryptage::crypter($pass) === $donnee['mdp']) {
+		if(mb_convert_encoding(Cryptage::crypter($pass),"ASCII") === mb_convert_encoding($donnee['mdp'],"ASCII")) {
 			return true;
 		}
 		else {
