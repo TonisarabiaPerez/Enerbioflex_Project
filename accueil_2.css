@@ -41,9 +41,15 @@ h3
 	background-color: rgb(238, 238, 238);
 	text-align: center;
 }
-#video h4
+#video video
+{
+	padding-bottom: 63px;
+}
+h4
 {
 	margin-top: 0;
+	padding-top: 63px;
+	margin-bottom: 63px;
 	font-size: 3em;
 }
 /*-----------------------Fin Video-------------------*/
@@ -74,7 +80,6 @@ a{
 	display: inline-block;
 	margin:0 auto;
 }
-
 .logo{
 
 	margin: 0 auto;
@@ -341,10 +346,11 @@ input[type=checkbox]:checked ~ #menu{
  float:left;
  margin:auto;
  padding:0;
- background-color:black;
+ background-color:white;
  }
 #menu li a {
  display:block;
+ margin-bottom: 1px;
  width:100px;
  color:black;
  text-decoration:none;
@@ -355,6 +361,7 @@ input[type=checkbox]:checked ~ #menu{
  color:#8B4513;
  font-weight: bold;
  border-bottom: 1px solid #45BEF8;
+ margin-bottom: 0;
  }
 
  .s-menu  {
@@ -517,57 +524,68 @@ h3{
 	text-overflow:hidden;
 }
 
+.post{
+	text-align: center;
+	color: rgb(41,171,225);
+}
+
+
 .divResult {
-display: table;
+display: flex;
+justify-content: space-around;
 margin-bottom: 5px;
-border: 3px solid #2e2e2e;
-min-height: 250px;
-border-bottom-left-radius: 3px;
-border-bottom-right-radius: 3px;
-border-top-left-radius: 3px;
-border-top-right-radius: 3px;
-box-shadow: #333333 0 3px 3px;
 margin-top: 20px;
-width: 99.5%;
-}
+margin-bottom: 63px;
 
-.tabPointO {
-display: table-cell;
-background-color: blue;
+}
+.divResult a{
+
+}
+.tabPoint:hover{
+	box-shadow: 0px 2px 2px;
+	margin-top:-10px;
+
+}
+.tabPoint {
+overflow: hidden;
+display: flex;
+flex-direction: column;
 text-align: center;
-color: #FFF;
-width: 33%;
-min-height: 250px;
-min-width: 150%;
-float: left;
-height: 100%;
+color: black;
+max-width: 750px;
+min-width: 350px;
+transition: margin 0.2s, height 2s,width 2s;
+}
+.tabPoint p
+{
+	margin-left: 25px;
+}
+.titreP
+{
+	border-bottom: 2px solid #D7D7D7;
+	box-shadow: 0px 2px 2px;
+	background-color: rgba(41,171,225,0.8);
+	color: inherit;
+	font-size: inherit;
+	font-size: 20px;
+	color: #D7D7D7;
+}
+.descr
+{
+	text-align: left;
+	font-size: 14px;
+	background-color: rgb(238, 238, 238);
+}
+.tabPoint:hover .infoP{
+	color: inherit;
+	color: #424242;
+}
+.infoP{
+	font-size: inherit;
+	font-size: 12px;
+	color: #A4A4A4
 }
 
-
-.tabPointO2 {
-display: table-cell;
-position: relative;
-min-height: 250px;
-background-color: #fff;
-text-align: center;
-color: #000;
-min-width: 150px;
-height: 100%;
-width: 33%;
-}
-
-
-.tabPointO3 {
-display: table-cell;
-position: relative;
-width: 33%;
-min-height: 250px;
-min-width: 150px;
-background-color: blue;
-text-align: center;
-color: #FFF;
-height: 100%;
-}
 /*********************************FIN MAIN****************************************************************/
 
 
@@ -659,8 +677,6 @@ hr{
 		float:left;
 		margin-left: 6.5%;
 		margin-top: 7px;
-		
-		font-family:Times New Roman, sans-serif;
 		font-size: 17px;
 		
 		
@@ -669,43 +685,29 @@ hr{
 footer a {
 	color:white;
 }
-#textefooterTitre{
-		
-		
-		display: block;
-		width:150px;
-		font-family:Georgia, sans-serif;
-		font-size: 18px;
-		
-
-		
-      	
-		
-      
-
-
+#textefooterTitre{	
+	display: block;
+	width:150px;
+	font-size: 18px;
 }
 #textefooterTitreReseau{
 	display: inline-block;
-	
 	float:right;
 	margin-top: 7px;
 	margin-right: 0.5%;
 	font-size:17px;
-	font-family:Times New Roman, sans-serif;
+
 
 
 }
 
 
 #textefooterX{
-	
     position: absolute;
     display: inline-block;
     bottom: 2px;
     right: 3px;
     color:white;
-   
     font-style: italic;
     font-size:13px;
 }
