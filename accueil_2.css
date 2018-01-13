@@ -391,6 +391,107 @@ input[type=checkbox]:checked ~ #menu{
 	margin-bottom : 20px;
 }
 
+/****************************SE CONNECTER*************************************/
+fieldset {
+	
+	
+	width: 400px;
+	margin-left: auto;
+ 	margin-right: auto;
+ 	background-color: #9E560F;
+ 	box-shadow: 0px 3px 0px #cfcccc;
+ 	 border-radius:25px;
+
+ }
+ .fieldsetInscr{
+ 	width: 400px;
+	margin-left: auto;
+ 	margin-right: auto;
+ 	background-color: #f1F1F1;
+ 	box-shadow: 0px 3px 0px #cfcccc;
+ 	 border-radius:25px;
+ }
+	
+
+
+.titreConnexion{
+	text-align: center;
+	width:430px;
+	margin-left: auto;
+  	margin-right: auto;
+  	
+  	font-size: 15px;
+  	font-style: italic;
+
+}
+
+input {
+    border-radius:2px;
+}
+
+#titreFormulaire{
+	width:300px;
+	height: 25px;
+	margin-left: auto;
+  	margin-right: auto;
+
+
+}
+#questionCaptcha{
+	display:inline-block;
+	float:left;
+	color:white;
+	font-size:15px;
+	font-family:"Times New Roman", sans-serif;
+	
+	
+
+
+}
+#resCaptcha{
+
+
+margin-left:-189px;
+	
+
+
+	
+
+
+}
+#notreForm input:hover, #notreForm select:hover, #notreForm input:focus, #notreForm select:focus
+{
+	/*border: #999 2px solid;*/
+	background-color:#89D3FE;
+}
+#CreationAccount{
+	
+	
+	text-align: center;
+	margin-left: auto;
+  	margin-right: auto;
+ 
+
+	
+	
+
+}
+#CreationAccount a{
+	color:#0000cc;
+}
+
+#mdpforgot{
+	
+	font-size: 12px;
+	font-style: italic;
+	color:white;
+
+
+}
+#titreLegendInscrip{
+	font-size:16px;
+}
+
 /***************************************Accueil ******************************/
 
 h1{
@@ -398,9 +499,8 @@ h1{
 	text-align: center;	
 }
 
-fieldset {
-	border: 2px solid #2a95be;
-}
+
+
 legend{
 	font-size:20px;
 	}

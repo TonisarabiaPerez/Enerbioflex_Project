@@ -8,13 +8,13 @@ if(!file_exists($connect)) {
 if (!empty($_SESSION['id'])) {
 	header('Location: /');
 }
-include('header_simple.php');
+include('header.php');
 if(!empty($_POST['connect'])) {
 	$co = Connexion::connexionCreate();
 	if($co==="0") {
 		echo '<center>
 		<br />
-		Redirection en cours ...
+		Connexion en cours ...
 		<br />
 		</center>';
 		
@@ -28,43 +28,50 @@ if(!empty($_POST['connect'])) {
 		</center>';
 		/* code initial des étudiants   alert($co.' <a href="index.php">Retour</a>');*/
 	}
-	redirection("../", $time=3);
+	redirection("../", $time=2);
 }
 else {
 	$captcha = new Captcha;
 	echo '
-	<h1>Connexion</h1>
-	<hr width="100%" color="7ad443">
+	<br><br>
+
+	<div class="titreConnexion"> Connectez-vous pour acceder à votre compte Energiculteur </div>
+	
+	<br><br>
+	
 	<fieldset class="fieldset">
-	<form action="" method="post">
-	<table align="center" class="form">
+
+	<form id="notreForm"action="" method="post">
+
+	<table cellpadding="11" align="center" class="form">
 	<tr>
 	<td colspan="3" align="center" class="titre_form"></td>
 	</tr>
 	<tr>
-	<td valign="top" rowspan="4"><a href="../accueil.php"><img src="../Images/default.png" width="70" height="70" /></td>
+
+	<td><input id="titreFormulaire" type="text" name="mail" placeholder="Adresse mail"/></td>
+	</tr>
+
+	<tr>
+	
+	<td><input id="titreFormulaire" type="password" name="pass"  placeholder="Mot de passe" /></td>
 	</tr>
 	<tr>
-	<td>Email : </td>
-	<td><input type="text" name="mail" placeholder="exemple@exemple.fr"/></td>
+	
+	<td><div id="questionCaptcha">'.$captcha->captcha().'</div></td>
+	
+	<td><input id="resCaptcha" type="text" name="captcha" /></td>
 	</tr>
 	<tr>
-	<td>Mot de passe : </td>
-	<td><input type="password" name="pass" /></td>
+	<td colspan="3" align="center"><input  type="submit" name="connect" value="Se Connecter" class="input" /></td>
 	</tr>
 	<tr>
-	<td>'.$captcha->captcha().'</td>
-	<td><input type="text" name="captcha" /></td>
-	</tr>
-	<tr>
-	<td colspan="3" align="center"><input type="submit" name="connect" value="Se Connecter" class="input" /></td>
-	</tr>
-	<tr>
-	<td align="center" colspan="3"><br /><a href="inscription.php">S\'Inscrire</a> - <a href="new_passe.php">Mot de passe oubli&eacute;</a></td>
+	<td align="center" colspan="3"><br /> <a href="new_passe.php"><div id="mdpforgot"> Mot de passe oubli&eacute; ? </div> </a></td>
 	</tr>
 	</table>
 	</form> 
 	</fieldset>';
+	echo'  <br> <div id="CreationAccount"> <a href="inscription.php"> Creer un compte </a> </div> <br><br><br><br><br>' ;
 }
-include('footer_simple.php');
+include('footer.php');
 ?>
