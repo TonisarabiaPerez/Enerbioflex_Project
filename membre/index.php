@@ -5,6 +5,7 @@ if(!file_exists($connect)) {
 	header('Location: install/');
 }
 //Redirection de l'utilisateur à la page accueil si connecté
+//commit
 if (!empty($_SESSION['id'])) {
 	header('Location: /');
 }

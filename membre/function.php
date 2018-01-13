@@ -3,7 +3,7 @@ if(empty($folder)) $folder = '../';
 include_once($folder.'function.php');
 require('define.php');
 require($folder.'lib/PHPMailer-master/PHPMailerAutoload.php');
-
+//commit
 // La fonction de redirection de base
 function redirection($url, $time=0) {
 	if (!headers_sent()) {
@@ -967,7 +967,7 @@ class Message {
 		$resultat -> bindParam(':id', $id, PDO::PARAM_INT, 11);
 		$resultat -> execute();
 		if($resultat -> rowCount() === 0) {
-			return 'Vous n\'avez aucun nouveau message';
+			return 'Vous n\'avez aucun nouveau message.';
 		}
 		else {
 			return 'Vous avez '.$resultat -> rowCount().' nouveau(x) message(s).';
