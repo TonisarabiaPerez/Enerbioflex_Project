@@ -39,7 +39,7 @@
 				problématiques de décision. 
 				</p>  
 		</div> 	
-		<img src="Images/image.jpeg" alt="fond"/>						
+		<img src="Images/img3.jpeg" alt="fond"/>						
 	</div>
 	<div id="video">
 		<H4>En savoir plus ?</H4>
