@@ -2,7 +2,7 @@
 include('header.php');
 include('menu.php');
 echo '
-<div id="titre_principal">Messages Envoyés</div>
+<div id="titre_principal"><h2>Messages Envoyés<h2></div>
 <br />
 <table width="100%">
 <tr>
@@ -12,13 +12,8 @@ echo '
 <a href="messagerie.php" class="input">Messages Reçus</a>
 </td>
 </tr>
-<tr>
-<td align="center" colspan="4">
-<img src="'.URLSITE.'/design/image/Non_Lu.png" width="24" height="24" align="absmiddle"> Nouveaux messages
-<img src="'.URLSITE.'/design/image/Lu.png" width="24" height="24" align="absmiddle"> Anciens messages
-<img src="'.URLSITE.'/design/image/faux.png" width="24" height="24" align="absmiddle"> Effacer par le destinataire
-</td>
-</tr>
+
+
 <tr>
 <td width="50px"></td>
 <td align="center" class="titre_form" width="250px">Date</td>
@@ -29,3 +24,11 @@ echo '
 </table>';
 include('footer.php');
 ?>
+
+<!-- <tr>
+<td align="center" colspan="4">
+<img src="'.URLSITE.'/design/image/Non_Lu.png" width="24" height="24" align="absmiddle"> Nouveaux messages
+<img src="'.URLSITE.'/design/image/Lu.png" width="24" height="24" align="absmiddle"> Anciens messages
+<img src="'.URLSITE.'/design/image/faux.png" width="24" height="24" align="absmiddle"> Effacer par le destinataire
+</td>
+</tr> -->

@@ -28,9 +28,26 @@
 }
 #bonjour
 {
-    text-align: center;
+    text-align: left;
+    
 }
 hr
 {
     width: 170px;
+}
+
+#titre_principal{
+    
+    text-align: center;
+}
+.input
+{
+    min-width: 200px;
+    padding: 12px;
+    padding-bottom: 50px;
+    
+}
+
+.titre_form{
+    border-style: solid;
 }
