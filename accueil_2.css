@@ -643,6 +643,7 @@ margin-bottom: 63px;
 }
 .tabPoint:hover{
 	margin-top:-10px;
+	margin-bottom: 10px;
 
 }
 .tabPoint {
@@ -676,6 +677,9 @@ transition: margin 0.2s, height 2s,width 2s;
 	font-size: 14px;
 	background-color: rgb(238, 238, 238);
 }
+.descr>p{
+	display: inline-block;
+}
 .tabPoint:hover .infoP{
 	color: inherit;
 	color: #424242;
@@ -703,12 +707,10 @@ transition: margin 0.2s, height 2s,width 2s;
 
 	}
  
- #partenaire{
-
+ .partenaire{
 
 	font-size:15px;
 	text-align:center;
-	background-color: #01ABFC;
 	
 }
 
