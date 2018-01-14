@@ -2,7 +2,7 @@
 include('header.php');
 include('menu.php');
 echo '<div id="principal">
-<div id="titre_principal">Nouveau Message</div>
+<div id="titre_principal"><h2>Nouveau Message<h2></div>
 <br />
 <script language="javascript">
 function smiley(texte){
