@@ -1,0 +1,36 @@
+#menumembre
+{
+    text-align: center;
+    background-color: white;
+}
+
+#menubarre 
+{
+    list-style: none;
+}
+#menubarre li
+{
+    display: inline-block;
+}
+#menubarre li a
+{
+    text-align: center;
+    min-width: 120px;
+    padding: 15px;
+}
+
+#menubarre li a:hover
+{
+    border-bottom: 1px solid #45BEF8;
+    margin-bottom: -1px;
+    color:#8B4513;
+    font-weight: bold;
+}
+#bonjour
+{
+    text-align: center;
+}
+hr
+{
+    width: 170px;
+}

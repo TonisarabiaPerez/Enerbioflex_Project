@@ -1,0 +1,579 @@
+html{
+
+    background-attachment:fixed;
+	background-repeat:repeat;
+    background-size:contain;
+	background-color: #f5f5f5;
+	font-family: calibri, arial, verdana, sans-serif;
+	height : 100%;
+}
+
+body{
+	color: #4D4D4D;
+	display : flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	height : 100%;
+	margin : auto;
+	max-width : 1080px;
+	min-width : 720px;
+	word-wrap:break-word;
+}
+
+#page{
+	background-color: #ffffff;
+}
+
+
+/*****RAPPEL COULEURS*****
+Bleu menu: 45aed6
+Bleu barres: 2a95be
+Gris police: 4d4d4d
+Gris hover menu: 2f3036
+Vert logos/alert: bcdf5f
+Vert hover bouttons: 7ad443
+Rouge alert: ec7148
+*/
+
+/*...........................................LOGO............................................................*/
+a{
+	text-decoration:none;
+	color: #4D4D4D;
+}
+
+.logo{
+	width:300px;
+	padding-top:-20px;
+	float:left;
+	padding-right: 60px;
+
+}
+
+#groslogo{
+	width:85%;
+	height:auto;
+}
+
+/*...........................................Alertes...........................................................*/
+.alert-r {
+    padding: 20px;
+    background-color: #ec7148; /* Rouge */
+    color: white;
+    margin-bottom: 15px;
+}
+
+.alert-v {
+    padding: 20px;
+    background-color: #7ad443; /* Vert */
+    color: white;
+    margin-bottom: 15px;
+}
+
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.closebtn:hover {
+    color: black;
+}
+
+/*.........................................My button............................................*/
+.myButton {
+	background-color:#45add6;
+	-moz-border-radius:28px;
+	-webkit-border-radius:28px;
+	border-radius:28px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	padding:16px 20px;
+	margin: 20px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #5b6178;
+}
+.myButton:hover {
+	background-color:#7bd443;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+
+/*.........................................bloc du haut..................................................*/
+header{
+
+	margin-top:-20px;
+	padding:40px;
+	padding-top:-10px;
+	-moz-box-shadow: 0 2px 1px #9c9c9c;
+	-webkit-box-shadow: 0 2px 1px #9c9c9c;
+	box-shadow: 0 2px 1px #9c9c9c;
+
+}
+
+
+/*................................Barre de recherche..........................................................*/
+
+
+
+	#zone_recherche {
+		width: 260px;
+		position: relative;
+		float:right;
+		margin-top:12px;
+
+	}
+
+
+
+#texte_recherche {
+	width: 198px;
+	margin:2px;
+	height:16px;
+	padding: 10px 50px 10px 10px;
+	border: solid 1px #4D4D4D;
+	font-size: 18px;
+}
+
+#bouton_recherche {
+	margin-top: -16px;
+	position: absolute;
+	top: 50%;
+	right: 10px;
+	height:30px
+}
+
+
+/*....................................................titre : reseau Sociaux..................................................*/
+#reseaux{
+	margin-top: 20px; 
+	display : flex;
+}
+
+.reseau{
+	width:30px;
+	height:30px;
+	margin: 2px;
+	margin-bottom:0px;
+}
+
+
+/*.............................................................Menu.............................................................*/
+
+
+@media screen and (max-width : 700px){
+	/*Make dropdown links appear inline*/
+	#menu {
+		position: static;
+		display: none;
+	
+	}
+	/*Create vertical spacing*/
+	#menu li {
+		margin-right: 400px;
+	}
+	/*Make all menu links full width*/
+	#menu li, li a {
+		width: 300%;
+	}
+}
+
+
+/*Strip the ul of padding and list styling*/
+#menu {
+	list-style-type:none;
+	margin:0;
+	padding:0;
+	display: flex;
+	position: relative;
+	background: #45aed6;
+	-moz-box-shadow: 0 2px 1px #9c9c9c;
+	-webkit-box-shadow: 0 2px 1px #9c9c9c;
+	box-shadow: 0 2px 1px #9c9c9c;
+	width: 100%;
+}
+
+/*Create a horizontal list with spacing*/
+#menu li {
+	display:flex;
+	margin-right:20px;
+	margin-left:10px;
+}
+
+
+/*Style for menu links*/
+#menu li a {
+	display:flex;
+	justify-content:center;
+	min-width:159px; 
+	height: 50px;
+	text-align: center;
+	line-height: 50px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: #fff;
+	background: #45aed6;
+		
+}
+
+
+/*Hover state for top level links*/
+#menu li:hover a {
+	background: #4D4D4D;
+}
+
+#menu li:hover .seconnecter{
+	background: #7AD443;
+}
+
+#menu li:hover .sedeconnecter{
+	background: #ec7148;
+}
+
+/*Style for dropdown links*/
+#menu li:hover #menu a {
+	background: #2f3036;
+	color: #2f3036;
+	height: 40px;
+	line-height: 40px;
+}
+
+/*Hover state for dropdown links*/
+#menu li:hover #menu a:hover {
+		background: #2f3036;
+	color: #fff;
+}
+
+
+
+/*Prevent text wrapping*/
+#menu li #menu li a {
+	width: auto;
+	min-width: 100px;
+	padding: 0 20px;
+}
+
+/*Display the dropdown on hover*/
+#menu li a:hover + .hidden, .hidden:hover {
+	display: block;
+}
+
+/*Style 'show menu' label button and hide it by default*/
+.show-menu {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	text-decoration: none;
+	color: #fff;
+		background: #45aed6;
+
+	text-align: center;
+	padding: 10px 0;
+	display: none;
+}
+
+/*Hide checkbox*/
+input[type=checkbox]{
+    display: none;
+}
+
+/*Show menu when invisible checkbox is checked*/
+input[type=checkbox]:checked ~ #menu{
+    display: block;
+}
+
+/*Responsive Styles*/
+
+@media screen and (max-width : 1150px){
+	/*Make dropdown links appear inline*/
+	#menu {
+		position: static;
+		display: none;
+	}
+	/*Create vertical spacing*/
+	li {
+		margin-bottom: 1px;
+	}
+	/*Make all menu links full width*/
+	#menu li, #menu li a {
+		width: 100%;
+	}
+	/*Display 'show menu' link*/
+	.show-menu {
+		display:block;
+	}
+}
+
+
+/***************************************MAIN******************************************************************************/
+
+
+#main{
+	margin-top: -20px;
+	padding : 20px;
+	padding-top : 50px;
+	-moz-box-shadow: 0 2px 1px #9c9c9c;
+	-webkit-box-shadow: 0 2px 1px #9c9c9c;
+	box-shadow: 0 2px 1px #9c9c9c;
+	height : 85%;
+	background-color : #fff;
+	/* flex:1; 	 */
+}
+
+#erreur{
+	width : 100%;
+	height : auto;
+	margin-bottom : 20px;
+}
+
+/***************************************Accueil ******************************/
+
+h1{
+	font-size:50px;	
+	text-align: center;	
+}
+
+fieldset {
+	border: 2px solid #2a95be;
+}
+legend{
+	font-size:20px;
+	}
+	
+.titre{
+	font-size:23px;
+}
+h3{
+	padding-top: 0px;
+padding-left: 90px;
+
+
+}
+#imgnews{
+	display:flex;
+	padding-left: 90px;
+}
+#text{
+background:red;
+
+}
+.fb-page{
+	width:40%;
+	height:300px;
+	border: solid 5px #eaeaea;
+	-moz-box-shadow: 0 2px 1px #9c9c9c;
+	-webkit-box-shadow: 0 2px 1px #9c9c9c;
+	box-shadow: 0 2px 1px #9c9c9c;
+}
+
+.img_article{
+	max-width : 500px;
+}
+
+.img_profil{
+	width : 100px;
+	height : 100px;
+	border: solid 2px #2a95be;
+}	
+
+.img_membre{
+	width : 75px;
+	height : 75px;	
+	-moz-box-shadow: 0 2px 1px #9c9c9c;
+	-webkit-box-shadow: 0 2px 1px #9c9c9c;
+	box-shadow: 0 2px 1px #9c9c9c;
+}
+
+.prearticle{
+	width:100%;
+	overflow : hidden;
+}
+.contenu{
+	font-weight : bold;
+}
+
+/*************************************Articles*******************************************/
+
+.flexcom{
+	display:flex;
+	margin:15px;
+}
+
+.flexc1{
+	padding:10px;
+	border: solid 1px #eaeaea;
+}
+
+.flexc1full{
+	padding:15px;
+	background-color: #eaeaea;
+	min-width:100px;
+}
+
+.flexc2{
+	padding:20px;
+	flex:1;
+	border: solid 1px #eaeaea;
+	background-color: #fff;
+}
+
+.flexc2full{
+	padding:20px;
+	flex:1;
+	background-color: #eaeaea;
+}
+
+
+/***************************************Visio********************************************/
+
+#visios{
+	display:flex;
+	flex-direction:row;
+	flex-wrap: wrap;
+}
+
+.unevid{
+	margin:10px;
+	width:160px;
+	height:200px;
+	text-overflow: ellipsis;
+}
+
+#horaires{
+	height: 200px;
+	overflow-y: auto;
+}
+
+#horaires td{
+	margin: 2px;;
+}
+
+.date_res{
+	border:5px #45aed6 solid;
+	background-color: #45aed6;
+	color: white;
+	min-width:200px;
+	text-overflow:hidden;
+}
+
+.divResult {
+display: table;
+margin-bottom: 5px;
+border: 3px solid #2e2e2e;
+min-height: 250px;
+border-bottom-left-radius: 3px;
+border-bottom-right-radius: 3px;
+border-top-left-radius: 3px;
+border-top-right-radius: 3px;
+box-shadow: #333333 0 3px 3px;
+margin-top: 20px;
+width: 99.5%;
+}
+
+.tabPointO {
+display: table-cell;
+background-color: blue;
+text-align: center;
+color: #FFF;
+width: 33%;
+min-height: 250px;
+min-width: 150%;
+float: left;
+height: 100%;
+}
+
+
+.tabPointO2 {
+display: table-cell;
+position: relative;
+min-height: 250px;
+background-color: #fff;
+text-align: center;
+color: #000;
+min-width: 150px;
+height: 100%;
+width: 33%;
+}
+
+
+.tabPointO3 {
+display: table-cell;
+position: relative;
+width: 33%;
+min-height: 250px;
+min-width: 150px;
+background-color: blue;
+text-align: center;
+color: #FFF;
+height: 100%;
+}
+/*********************************FIN MAIN****************************************************************/
+
+
+ /*............................................bas de page..............................................*/
+
+ footer{
+	 -moz-box-shadow: 0 2px 1px #9c9c9c;
+	-webkit-box-shadow: 0 2px 1px #9c9c9c;
+	box-shadow: 0 2px 1px #9c9c9c;
+	width: 100%;
+	position : relative;
+	bottom : 0;
+ }
+ .partenaire{
+
+
+	font-size:15px;
+	text-align:center;
+	background: none repeat scroll 0% 0% ;
+	/*background-color:#ddd;*/
+	background-image: -moz-linear-gradient(90deg, #2caab3 0%, #2c8cb3 100%);
+    background-image: -webkit-linear-gradient(90deg, #2caab3 0%, #2c8cb3 100%);
+    background-image: -ms-linear-gradient(90deg, #2caab3 0%, #2c8cb3 100%);
+	/* padding-bottom:5px; */
+	/* padding-right:20px; */
+	/* padding-left:20px; */
+}
+
+
+
+.partenaireLogo{
+	width:100px;
+	height:100x;
+	margin:10px;
+
+
+}
+
+
+
+hr{
+	margin-top:30px;
+
+}
+
+#bas-de-page{
+
+	font-size:15px;
+	text-align:center;
+	background: none repeat scroll 0% 0% ;
+	background-color: #2e2e2e;
+	padding-bottom:5px;
+	padding:30px;
+	color:#FFF;
+
+}
+
+#bas-de-page span{
+        /* margin-right:  10px; */
+        padding-right: 10px;
+        border-right: 1px solid #888;
+}
+
